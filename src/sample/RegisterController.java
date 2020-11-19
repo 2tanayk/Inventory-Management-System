@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,6 +12,7 @@ public class RegisterController {
     public TextField nameTextField;
     public TextField registerEmailText;
     public TextField registerPasswordText;
+    public Button loginSwitchBtn;
 
 
     public void register(ActionEvent event) throws Exception {
@@ -48,6 +48,13 @@ public class RegisterController {
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                 "Welcome " + nameTextField.getText());
+
+//        loginSwitchBtn.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//
+//            }
+//        });
 
 
     }
