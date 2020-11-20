@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -20,9 +21,11 @@ public class RegisterController {
     public TextField registerEmailText;
     public TextField registerPasswordText;
     public Button loginSwitchBtn;
+    ActionEvent helperEvent;
 
 
     public void register(ActionEvent event) throws Exception {
+        helperEvent = event;
         Window owner = registerBtn.getScene().getWindow();
 
         System.out.println(nameTextField.getText());
@@ -55,6 +58,7 @@ public class RegisterController {
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                 "Welcome " + nameTextField.getText());
+        homePage();
 
 //        loginSwitchBtn.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
@@ -64,6 +68,15 @@ public class RegisterController {
 //        });
 
 
+    }
+
+    private void homePage() throws IOException {
+        TabPane homeTabPane = FXMLLoader.load(getClass().getResource("res/home.fxml"));
+        Scene sc = new Scene(homeTabPane);
+        Stage window = (Stage) ((Node) helperEvent.getSource()).getScene().getWindow();
+
+        window.setScene(sc);
+        window.show();
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

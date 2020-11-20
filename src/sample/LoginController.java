@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -19,8 +20,10 @@ public class LoginController {
     public Button loginBtn;
     public TextField loginEmailText;
     public TextField loginPasswordText;
+    ActionEvent helperEvent;
 
     public void login(ActionEvent event) throws Exception {
+        helperEvent = event;
         Window owner = loginBtn.getScene().getWindow();
 
         System.out.println(loginEmailText.getText());
@@ -48,7 +51,18 @@ public class LoginController {
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
             infoBox("Login Successful!", null, "Success!");
+            homePage();
         }
+    }
+
+    private void homePage() throws IOException {
+        TabPane homeTabPane = FXMLLoader.load(getClass().getResource("res/home.fxml"));
+        Scene sc = new Scene(homeTabPane);
+        Stage window = (Stage) ((Node) helperEvent.getSource()).getScene().getWindow();
+
+        window.setScene(sc);
+        window.show();
+
     }
 
 

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class JDBCDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbcdemo";
     private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "YOUR_PASSWORD";
+    private static final String DATABASE_PASSWORD = "vhFMHCb$&*^%Uw*#";
     private static final String INSERT_QUERY = "insert into registration (full_name, email_id, password) values (?, " +
             "?, ?)";
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";

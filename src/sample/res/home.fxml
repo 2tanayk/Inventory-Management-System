@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
+    <tabs>
+        <Tab fx:id="inventoryTab" text="Inventory">
+            <content>
+                <AnchorPane>
+                    <children>
+                        <TableView fx:id="inventoryTableView" prefHeight="400.0" prefWidth="600.0"
+                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn fx:id="idCol" prefWidth="75.0" text="Id"/>
+                                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name"/>
+                                <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price"/>
+                                <TableColumn fx:id="qtyCol" prefWidth="75.0" text="Quantity"/>
+                                <TableColumn fx:id="imgCol" prefWidth="75.0" text="Image"/>
+                                <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="Description"/>
+                                <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab fx:id="orderTab" text="Orders">
+            <content>
+                <AnchorPane/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
