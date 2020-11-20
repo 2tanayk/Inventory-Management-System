@@ -1,11 +1,18 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.DAO.JDBCDao;
+
+import java.io.IOException;
 
 public class RegisterController {
     public Button registerBtn;
@@ -66,6 +73,16 @@ public class RegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    //method to navigate to the login page
+    public void loginPage(ActionEvent event) throws IOException {
+        GridPane loginGridPane = FXMLLoader.load(getClass().getResource("res/login.fxml"));
+        Scene sc = new Scene(loginGridPane);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(sc);
+        window.show();
     }
 
 

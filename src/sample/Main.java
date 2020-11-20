@@ -26,33 +26,33 @@ public class Main extends Application {
         //register page
         GridPane registerRoot = FXMLLoader.load(getClass().getResource("res/register.fxml"));
         //login page
-        GridPane loginRoot = FXMLLoader.load(getClass().getResource("res/login.fxml"));
+        //GridPane loginRoot = FXMLLoader.load(getClass().getResource("res/login.fxml"));
         //one time
         Scene c = new Scene(registerRoot);
         //login button
-        Button loginSwitch = new Button("Login Instead");
+//        Button loginSwitch = new Button("Login Instead");
+//
+//        loginSwitch.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                c.setRoot(loginRoot);
+//                window.setScene(c);
+//                primaryStage.setTitle("User Login");
+//            }
+//        });
+//        registerRoot.getChildren().add(loginSwitch);
 
-        loginSwitch.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                c.setRoot(loginRoot);
-                window.setScene(c);
-                primaryStage.setTitle("User Login");
-            }
-        });
-        registerRoot.getChildren().add(loginSwitch);
-
-        Button registerSwitch = new Button("Register");
-        registerSwitch.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                c.setRoot(registerRoot);
-                window.setScene(c);
-                primaryStage.setTitle("User Registration");
-            }
-        });
-        //registerSwitch.setOnAction(event -> scene.setRoot(registerRoot));
-        loginRoot.getChildren().add(registerSwitch);
+//        Button registerSwitch = new Button("Register");
+//        registerSwitch.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                c.setRoot(registerRoot);
+//                window.setScene(c);
+//                primaryStage.setTitle("User Registration");
+//            }
+//        });
+//        //registerSwitch.setOnAction(event -> scene.setRoot(registerRoot));
+        // loginRoot.getChildren().add(registerSwitch);
 
 
         primaryStage.setTitle("User Registration");

@@ -36,11 +36,13 @@
             <Insets bottom="20" left="0" right="0" top="20" />
         </GridPane.margin>
     </Button>
+   <Button mnemonicParsing="false" onAction="#registerPage" text="Register Instead" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     <rowConstraints>
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>
