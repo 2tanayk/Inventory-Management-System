@@ -1,5 +1,6 @@
 package sample;
 
+import DataClasses.Customer;
 import DataClasses.Inventory;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -23,12 +24,14 @@ import sample.DAO.JDBCDao;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
     public Tab inventoryTab;
     public Tab orderTab;
+
     public TableView<Inventory> inventoryTableView;
     public TableColumn<Inventory, Integer> idCol;
     public TableColumn<Inventory, String> nameCol;
@@ -42,6 +45,22 @@ public class HomeController implements Initializable {
     public Button updateBtn;
     public Button deleteBtn;
 
+    public TableView<Customer> ordersTableView;
+    public TableColumn<Customer, Integer> srnoCol;
+    public TableColumn<Customer, String> fnameCol;
+    public TableColumn<Customer, String> lnameCol;
+    public TableColumn<Customer, String> emailCol;
+    public TableColumn<Customer, LocalDate> dooCol;
+    public TableColumn<Customer, LocalDate> dodCol;
+    public TableColumn<Customer, String> productCol;
+    public TableColumn<Customer, Integer> priceOrderCol;
+    public TableColumn<Customer, Integer> qtyOrderCol;
+    public TableColumn<Customer, Integer> totalCol;
+
+    public Button cAddBtn;
+    public Button cUpdateBtn;
+    public Button cDeleteBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idCol.setCellValueFactory(new PropertyValueFactory<Inventory, Integer>("id"));
@@ -52,8 +71,21 @@ public class HomeController implements Initializable {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("description"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("category"));
 
+        srnoCol.setCellValueFactory(new PropertyValueFactory<>("srno"));
+        fnameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lnameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        dooCol.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+        dodCol.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
+        productCol.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        priceOrderCol.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+        qtyOrderCol.setCellValueFactory(new PropertyValueFactory<>("productQuantity"));
+        totalCol.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+
+
         try {
             inventoryTableView.setItems(getInventory());
+            ordersTableView.setItems(getCustomer());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,6 +108,25 @@ public class HomeController implements Initializable {
         inventoryRow.add(inventory);
 
         return inventoryRow;
+    }
+
+    public ObservableList<Customer> getCustomer() throws Exception {
+        ObservableList<Customer> customerRow = FXCollections.observableArrayList();
+
+//        Inventory inventory = new Inventory();
+//        inventory.setId(new SimpleIntegerProperty(1));
+//        inventory.setName(new SimpleStringProperty("Car"));
+//        inventory.setPrice(new SimpleIntegerProperty(1000));
+//        inventory.setQuantity(new SimpleIntegerProperty(12));
+//        inventory.setImage(new SimpleStringProperty("No Image"));
+//        inventory.setDescription(new SimpleStringProperty("JHEDVHEDHWDVW"));
+//        inventory.setCategory(new SimpleStringProperty("Automobiles"));
+
+        JDBCDao jdbcDao = new JDBCDao();
+        Customer customer = jdbcDao.getRowOrders();
+        customerRow.add(customer);
+
+        return customerRow;
     }
 
     public void addProductEntry(ActionEvent event) throws IOException {

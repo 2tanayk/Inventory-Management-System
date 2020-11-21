@@ -3,33 +3,79 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
     <tabs>
         <Tab fx:id="inventoryTab" text="Inventory">
             <content>
                 <AnchorPane>
                     <children>
-                        <TableView fx:id="inventoryTableView" prefHeight="400.0" prefWidth="530.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="inventoryTableView" prefHeight="400.0" prefWidth="530.0"
+                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="idCol" prefWidth="75.0" text="Id" />
-                                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
-                                <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price" />
-                                <TableColumn fx:id="qtyCol" prefWidth="75.0" text="Quantity" />
-                                <TableColumn fx:id="imgCol" prefWidth="75.0" text="Image" />
-                                <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="Description" />
-                                <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category" />
+                                <TableColumn fx:id="idCol" prefWidth="75.0" text="Id"/>
+                                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name"/>
+                                <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price"/>
+                                <TableColumn fx:id="qtyCol" prefWidth="75.0" text="Quantity"/>
+                                <TableColumn fx:id="imgCol" prefWidth="75.0" text="Image"/>
+                                <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="Description"/>
+                                <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category"/>
                             </columns>
                         </TableView>
-                  <Button fx:id="addBtn" layoutX="534.0" layoutY="84.0" mnemonicParsing="false" onAction="#addProductEntry" prefHeight="20.0" prefWidth="20.0" text="Add" AnchorPane.bottomAnchor="301.33333333333337" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" />
-                  <Button fx:id="updateBtn" layoutX="536.0" layoutY="120.0" mnemonicParsing="false" onAction="#updateProductEntry" prefHeight="20.0" prefWidth="20.0" text="Update" AnchorPane.bottomAnchor="261.33333333333337" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="120.0" />
-                  <Button fx:id="deleteBtn" layoutX="536.0" layoutY="159.0" mnemonicParsing="false" onAction="#deleteProductEntry" prefHeight="20.0" prefWidth="20.0" text="Delete" AnchorPane.bottomAnchor="221.33333333333334" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="160.0" />
+                        <Button fx:id="addBtn" layoutX="534.0" layoutY="84.0" maxHeight="40.0" maxWidth="40.0"
+                                mnemonicParsing="false" onAction="#addProductEntry" prefHeight="20.0" prefWidth="20.0"
+                                text="Add" AnchorPane.bottomAnchor="301.33333333333337" AnchorPane.leftAnchor="534.0"
+                                AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0"/>
+                        <Button fx:id="updateBtn" layoutX="536.0" layoutY="120.0" maxHeight="40.0" maxWidth="40.0"
+                                mnemonicParsing="false" onAction="#updateProductEntry" prefHeight="20.0"
+                                prefWidth="20.0" text="Update" AnchorPane.bottomAnchor="261.33333333333337"
+                                AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0"
+                                AnchorPane.topAnchor="120.0"/>
+                        <Button fx:id="deleteBtn" layoutX="536.0" layoutY="159.0" maxHeight="40.0" maxWidth="40.0"
+                                mnemonicParsing="false" onAction="#deleteProductEntry" prefHeight="20.0"
+                                prefWidth="20.0" text="Delete" AnchorPane.bottomAnchor="221.33333333333334"
+                                AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0"
+                                AnchorPane.topAnchor="160.0"/>
                     </children>
                 </AnchorPane>
             </content>
         </Tab>
         <Tab fx:id="orderTab" text="Orders">
             <content>
-                <AnchorPane />
+                <AnchorPane>
+                    <children>
+                        <TableView fx:id="ordersTableView" prefHeight="200.0" prefWidth="600.0"
+                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn fx:id="srnoCol" prefWidth="60.0" text="Sr.no"/>
+                                <TableColumn fx:id="fnameCol" prefWidth="70.0" text="First Name"/>
+                                <TableColumn fx:id="lnameCol" prefWidth="70.0" text="Last Name"/>
+                                <TableColumn fx:id="emailCol" prefWidth="43.0" text="Email"/>
+                                <TableColumn fx:id="dooCol" prefWidth="35.0" text="DOO"/>
+                                <TableColumn fx:id="dodCol" prefWidth="35.0" text="DOD"/>
+                                <TableColumn fx:id="productCol" prefWidth="56.0" text="Product"/>
+                                <TableColumn fx:id="priceOrderCol" prefWidth="40.66668701171875" text="Price"/>
+                                <TableColumn fx:id="qtyOrderCol" prefWidth="63.0" text="Quantity"/>
+                                <TableColumn fx:id="totalCol" prefWidth="55.666656494140625" text="Total"/>
+                            </columns>
+                        </TableView>
+                        <Button fx:id="cAddBtn" layoutX="540.0" layoutY="49.0" maxHeight="40.0" maxWidth="40.0"
+                                mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="Add"
+                                AnchorPane.bottomAnchor="346.0" AnchorPane.leftAnchor="540.0"
+                                AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="50.0"/>
+                        <Button fx:id="cUpdateBtn" layoutX="540.0" layoutY="97.0" maxHeight="40.0" maxWidth="40.0"
+                                mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="Update"
+                                AnchorPane.bottomAnchor="296.33333333333337" AnchorPane.leftAnchor="540.0"
+                                AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="100.0"/>
+                        <Button fx:id="cDeleteBtn" layoutX="540.0" layoutY="144.0" maxHeight="40.0" maxWidth="40.0"
+                                mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="Delete"
+                                AnchorPane.bottomAnchor="251.99999999999997" AnchorPane.leftAnchor="540.0"
+                                AnchorPane.rightAnchor="9.333333333333336" AnchorPane.topAnchor="144.0"/>
+                    </children>
+                </AnchorPane>
             </content>
         </Tab>
     </tabs>
