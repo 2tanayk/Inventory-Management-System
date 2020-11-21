@@ -138,7 +138,7 @@ public class HomeController implements Initializable {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentWindow);
 
-        stage.setTitle("Add product");
+        stage.setTitle("Add Product");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -165,8 +165,49 @@ public class HomeController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentWindow);
-        stage.setTitle("Remove product");
+        stage.setTitle("Remove Product");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void addCustomerEntry(ActionEvent event) throws IOException {
+        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteCustomerWindow.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(parentWindow);
+        stage.setTitle("Remove Order");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    public void updateCustomerEntry(ActionEvent event) throws IOException {
+        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/updateCustomerWindow.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(parentWindow);
+        stage.setTitle("Update Order");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    public void deleteCustomerEntry(ActionEvent event) throws IOException {
+        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteCustomerWindow.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(parentWindow);
+        stage.setTitle("Delete Order");
         stage.setScene(new Scene(root));
         stage.show();
     }
 }
+
+

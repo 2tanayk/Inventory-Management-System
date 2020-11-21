@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class JDBCDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbcdemo";
