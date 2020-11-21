@@ -3,34 +3,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
     <tabs>
         <Tab fx:id="inventoryTab" text="Inventory">
             <content>
                 <AnchorPane>
                     <children>
-                        <TableView fx:id="inventoryTableView" prefHeight="400.0" prefWidth="600.0"
-                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="inventoryTableView" prefHeight="400.0" prefWidth="530.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="idCol" prefWidth="75.0" text="Id"/>
-                                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name"/>
-                                <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price"/>
-                                <TableColumn fx:id="qtyCol" prefWidth="75.0" text="Quantity"/>
-                                <TableColumn fx:id="imgCol" prefWidth="75.0" text="Image"/>
-                                <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="Description"/>
-                                <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category"/>
+                                <TableColumn fx:id="idCol" prefWidth="75.0" text="Id" />
+                                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
+                                <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price" />
+                                <TableColumn fx:id="qtyCol" prefWidth="75.0" text="Quantity" />
+                                <TableColumn fx:id="imgCol" prefWidth="75.0" text="Image" />
+                                <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="Description" />
+                                <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category" />
                             </columns>
                         </TableView>
+                  <Button fx:id="addBtn" layoutX="534.0" layoutY="84.0" mnemonicParsing="false" onAction="#addProductEntry" prefHeight="20.0" prefWidth="20.0" text="Add" AnchorPane.bottomAnchor="301.33333333333337" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" />
+                  <Button fx:id="updateBtn" layoutX="536.0" layoutY="120.0" mnemonicParsing="false" onAction="#updateProductEntry" prefHeight="20.0" prefWidth="20.0" text="Update" AnchorPane.bottomAnchor="261.33333333333337" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="120.0" />
+                  <Button fx:id="deleteBtn" layoutX="536.0" layoutY="159.0" mnemonicParsing="false" onAction="#deleteProductEntry" prefHeight="20.0" prefWidth="20.0" text="Delete" AnchorPane.bottomAnchor="221.33333333333334" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="160.0" />
                     </children>
                 </AnchorPane>
             </content>
         </Tab>
         <Tab fx:id="orderTab" text="Orders">
             <content>
-                <AnchorPane/>
+                <AnchorPane />
             </content>
         </Tab>
     </tabs>
