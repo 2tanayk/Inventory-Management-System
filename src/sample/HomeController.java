@@ -6,6 +6,7 @@ import DataClasses.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -30,8 +31,9 @@ public class HomeController implements Initializable {
 
     public Tab inventoryTab;
     public Tab orderTab;
+    @FXML
+    private TableView<Inventory> inventoryTableView;
 
-    public TableView<Inventory> inventoryTableView;
     public TableColumn<Inventory, Integer> idCol;
     public TableColumn<Inventory, String> nameCol;
     public TableColumn<Inventory, Integer> priceCol;
@@ -137,6 +139,9 @@ public class HomeController implements Initializable {
         Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/addProductWindow.fxml"));
         Parent root = fxmlLoader.load();
+        AddProductWindowController addProductWindowController = (AddProductWindowController) fxmlLoader.getController();
+        addProductWindowController.sInventoryTableView = inventoryTableView;
+
         Stage stage = new Stage();
 
         stage.initModality(Modality.WINDOW_MODAL);

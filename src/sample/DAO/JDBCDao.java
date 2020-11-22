@@ -115,18 +115,19 @@ public class JDBCDao {
         return ordersList;
     }
 
-    public void insertProductToInventory(int id, String productName, int price, int qty, String img,
-                                         String description, String category) throws Exception {
+    public void insertProductToInventory(Inventory inventory) throws Exception {
+        //int id, String productName, int price, int qty, String img,String description, String category
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         PreparedStatement preparedStatement = con.prepareStatement(INSERT_INTO_INVENTORY);
-        preparedStatement.setInt(1, id);
-        preparedStatement.setString(2, productName);
-        preparedStatement.setInt(3, price);
-        preparedStatement.setInt(4, qty);
-        preparedStatement.setString(5, img);
-        preparedStatement.setString(6, description);
-        preparedStatement.setString(7, category);
+
+        preparedStatement.setInt(1, inventory.getId());
+        preparedStatement.setString(2, inventory.getName());
+        preparedStatement.setInt(3, inventory.getPrice());
+        preparedStatement.setInt(4, inventory.getQuantity());
+        preparedStatement.setString(5, inventory.getImage());
+        preparedStatement.setString(6, inventory.getDescription());
+        preparedStatement.setString(7, inventory.getCategory());
 
         int count = preparedStatement.executeUpdate();
         System.out.println("Rows affected " + count);
