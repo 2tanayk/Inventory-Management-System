@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
-    <padding>
-        <Insets bottom="40" left="40" right="40" top="40" />
-    </padding>
-    <columnConstraints>
-        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="100" prefWidth="100" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200" prefWidth="200" />
-    </columnConstraints>
-    <!-- Add Header Label -->
-    <Label text="Register" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1">
-        <font>
-            <Font name="Arial" size="24" />
-        </font>
-        <GridPane.margin>
-            <Insets bottom="20" left="0" right="0" top="20" />
-        </GridPane.margin>
-    </Label>
-    <!-- Add Name Label -->
-    <Label text="Full Name : " GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <!-- Add Name Text Field -->
-    <TextField id="nameTextField" fx:id="nameTextField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <!-- Add Email Label -->
-    <Label text="Email ID : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <!-- Add Email Text Field -->
-    <TextField id="registerEmailText" fx:id="registerEmailText" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <!-- Add Password Label -->
-    <Label text="Password : " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-    <!-- Add Password Field -->
-    <PasswordField id="registerPasswordText" fx:id="registerPasswordText" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-    <!-- Add Submit Button -->
-    <Button id="registerBtn" fx:id="registerBtn" defaultButton="true" onAction="#register" prefHeight="40" prefWidth="100" text="Submit" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="1">
-        <GridPane.margin>
-            <Insets bottom="20" left="0" right="0" top="20" />
-        </GridPane.margin>
-    </Button>
-   <Button mnemonicParsing="false" onAction="#loginPage" text="Login Instead" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-    </rowConstraints>
-</GridPane>
+<!--<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller"> -->
+
+<GridPane alignment="center" hgap="10" style="-fx-background-color: #96439A;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
+
+            <children>
+                <AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #2A0033;">
+                    <children>
+                        <TextField id="nameTextField" fx:id="nameTextField" layoutX="122.0" layoutY="184.0" prefHeight="26.0" prefWidth="237.0" promptText="type name" style="-fx-border-color: #96439A; -fx-background-color: #96439A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20;" />
+                        <Label layoutX="26.0" layoutY="188.0" text="Username" textFill="#eae3e3">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField id="registerEmailText" fx:id="registerEmailText" layoutX="122.0" layoutY="244.0" prefHeight="26.0" prefWidth="237.0" promptText="type email" style="-fx-border-color: #96439A; -fx-background-color: #96439A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20;" />
+                        <Label layoutX="26.0" layoutY="248.0" text="E-mail" textFill="#eae3e3">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="304.0" text="Password" textFill="#eae3e3">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <PasswordField id="registerPasswordText" fx:id="registerPasswordText" layoutX="122.0" layoutY="300.0" prefHeight="26.0" prefWidth="237.0" promptText="type password" style="-fx-border-color: #96439A; -fx-background-color: #96439A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20;" />
+                        <Separator layoutX="29.0" layoutY="395.0" prefHeight="8.0" prefWidth="341.0" />
+                        <Separator layoutX="25.0" layoutY="122.0" prefHeight="8.0" prefWidth="341.0" />
+                        <Button id="registerBtn" fx:id="registerBtn" defaultButton="true" layoutX="64.0" layoutY="440.0" mnemonicParsing="false" onAction="#register" prefHeight="42.0" prefWidth="101.0" style="-fx-background-color: #FCBB31; -fx-background-radius: 20;" text="Register">
+                            <font>
+                                <Font name="Arial" size="14.0" />
+                            </font>
+                        </Button>
+
+                        <Label layoutX="108.0" layoutY="59.0" text="REGISTRATION" textFill="#eae3e3">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                 <!-- <Button id="registerBtn" fx:id="loginBtn" defaultButton="true" layoutX="231.0" layoutY="440.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FCBB31; -fx-background-radius: 20;" text="Login Instead">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button> -->
+                        <Button layoutX="220.0" layoutY="440.0" mnemonicParsing="false" onAction="#loginPage" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #FCBB31; -fx-background-radius: 20;" text="Login Instead" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                    </children>
+                </AnchorPane>
+            </children>
+            <columnConstraints>
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
