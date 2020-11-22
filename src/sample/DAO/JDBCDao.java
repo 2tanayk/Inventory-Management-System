@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JDBCDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbcdemo";
@@ -14,8 +16,10 @@ public class JDBCDao {
     private static final String INSERT_QUERY = "insert into registration (full_name, email_id, password) values (?, " +
             "?, ?)";
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
-    private static final String SELECT_ROW_QUERY = "SELECT * FROM inventory";
-    private static final String SELECT_ROW_QUERY_2 = "SELECT * FROM orders";
+    private static final String SELECT_ROW_QUERY_INVENTORY = "SELECT * FROM inventory";
+    private static final String SELECT_ROW_QUERY_ORDERS = "SELECT * FROM orders";
+    private static final String INSERT_INTO_INVENTORY = "INSERT INTO inventory (id,prod_name,price,qty,img,des," +
+            "category) values (?,?,?,?,?,?,?)";
 
 
     public void insertRecord(String fname, String email, String password) throws Exception {
@@ -51,54 +55,84 @@ public class JDBCDao {
         return false;
     }
 
-    public Inventory getRow() throws Exception {
+    public List<Inventory> getRowInventory() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         Statement statement = con.createStatement();
-        ResultSet rs = statement.executeQuery(SELECT_ROW_QUERY);
+        ResultSet rs = statement.executeQuery(SELECT_ROW_QUERY_INVENTORY);
 
-        boolean result = rs.next();
+        List<Inventory> inventoryList = new ArrayList<>();
 
-        Inventory inventory = new Inventory();
-        inventory.setId(new SimpleIntegerProperty(rs.getInt(1)));
-        inventory.setName(new SimpleStringProperty(rs.getString(2)));
-        inventory.setPrice(new SimpleIntegerProperty(rs.getInt(3)));
-        inventory.setQuantity(new SimpleIntegerProperty(rs.getInt(4)));
-        inventory.setImage(new SimpleStringProperty(rs.getString(5)));
-        inventory.setDescription(new SimpleStringProperty(rs.getString(6)));
-        inventory.setCategory(new SimpleStringProperty(rs.getString(7)));
+        //boolean result = rs.next();
+
+        while (rs.next()) {
+            Inventory inventory = new Inventory();
+            inventory.setId(new SimpleIntegerProperty(rs.getInt(1)));
+            inventory.setName(new SimpleStringProperty(rs.getString(2)));
+            inventory.setPrice(new SimpleIntegerProperty(rs.getInt(3)));
+            inventory.setQuantity(new SimpleIntegerProperty(rs.getInt(4)));
+            inventory.setImage(new SimpleStringProperty(rs.getString(5)));
+            inventory.setDescription(new SimpleStringProperty(rs.getString(6)));
+            inventory.setCategory(new SimpleStringProperty(rs.getString(7)));
+
+            inventoryList.add(inventory);
+        }
 
         statement.close();
         con.close();
 
-        return inventory;
+        return inventoryList;
     }
 
-    public Customer getRowOrders() throws Exception {
+    public List<Customer> getRowOrders() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         Statement statement = con.createStatement();
-        ResultSet rs = statement.executeQuery(SELECT_ROW_QUERY_2);
+        ResultSet rs = statement.executeQuery(SELECT_ROW_QUERY_ORDERS);
 
-        boolean result = rs.next();
+        // boolean result = rs.next();
 
-        Customer customer = new Customer();
+        List<Customer> ordersList = new ArrayList<>();
+        while (rs.next()) {
+            Customer customer = new Customer();
+            customer.setSrno(new SimpleIntegerProperty(rs.getInt(1)));
+            customer.setFirstName(new SimpleStringProperty(rs.getString(2)));
+            customer.setLastName(new SimpleStringProperty(rs.getString(3)));
+            customer.setEmail(new SimpleStringProperty(rs.getString(4)));
+            customer.setOrderDate(rs.getDate(5));
+            customer.setDeliveryDate(rs.getDate(6));
+            customer.setProductName(new SimpleStringProperty(rs.getString(7)));
+            customer.setProductPrice(new SimpleIntegerProperty(rs.getInt(8)));
+            customer.setProductQuantity(new SimpleIntegerProperty(rs.getInt(9)));
+            customer.setTotalPrice(new SimpleIntegerProperty(rs.getInt(10)));
 
-        customer.setSrno(new SimpleIntegerProperty(rs.getInt(1)));
-        customer.setFirstName(new SimpleStringProperty(rs.getString(2)));
-        customer.setLastName(new SimpleStringProperty(rs.getString(3)));
-        customer.setEmail(new SimpleStringProperty(rs.getString(4)));
-        customer.setOrderDate(rs.getDate(5));
-        customer.setDeliveryDate(rs.getDate(6));
-        customer.setProductName(new SimpleStringProperty(rs.getString(7)));
-        customer.setProductPrice(new SimpleIntegerProperty(rs.getInt(8)));
-        customer.setProductQuantity(new SimpleIntegerProperty(rs.getInt(9)));
-        customer.setTotalPrice(new SimpleIntegerProperty(rs.getInt(10)));
+            ordersList.add(customer);
+        }
 
         statement.close();
         con.close();
 
-        return customer;
+        return ordersList;
+    }
+
+    public void insertProductToInventory(int id, String productName, int price, int qty, String img,
+                                         String description, String category) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(INSERT_INTO_INVENTORY);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, productName);
+        preparedStatement.setInt(3, price);
+        preparedStatement.setInt(4, qty);
+        preparedStatement.setString(5, img);
+        preparedStatement.setString(6, description);
+        preparedStatement.setString(7, category);
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
     }
 
 

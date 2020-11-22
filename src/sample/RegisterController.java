@@ -94,6 +94,7 @@ public class RegisterController {
         Scene sc = new Scene(loginGridPane);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        window.setTitle("User Login");
         window.setScene(sc);
         window.show();
     }

@@ -59,7 +59,7 @@ public class LoginController {
         TabPane homeTabPane = FXMLLoader.load(getClass().getResource("res/home.fxml"));
         Scene sc = new Scene(homeTabPane);
         Stage window = (Stage) ((Node) helperEvent.getSource()).getScene().getWindow();
-
+        window.setTitle("MyInventory");
         window.setScene(sc);
         window.show();
 
@@ -89,6 +89,7 @@ public class LoginController {
         Scene sc = new Scene(registerGridPane);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        window.setTitle("User Registration");
         window.setScene(sc);
         window.show();
     }

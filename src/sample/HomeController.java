@@ -3,8 +3,6 @@ package sample;
 import DataClasses.Customer;
 import DataClasses.Inventory;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +23,7 @@ import sample.DAO.JDBCDao;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -104,8 +103,11 @@ public class HomeController implements Initializable {
 //        inventory.setCategory(new SimpleStringProperty("Automobiles"));
 
         JDBCDao jdbcDao = new JDBCDao();
-        Inventory inventory = jdbcDao.getRow();
-        inventoryRow.add(inventory);
+
+        List<Inventory> inventoryRowList = jdbcDao.getRowInventory();
+
+        //Inventory inventory = jdbcDao.getRow();
+        inventoryRow.addAll(inventoryRowList);
 
         return inventoryRow;
     }
@@ -122,9 +124,11 @@ public class HomeController implements Initializable {
 //        inventory.setDescription(new SimpleStringProperty("JHEDVHEDHWDVW"));
 //        inventory.setCategory(new SimpleStringProperty("Automobiles"));
 
+
         JDBCDao jdbcDao = new JDBCDao();
-        Customer customer = jdbcDao.getRowOrders();
-        customerRow.add(customer);
+        List<Customer> ordersRowList = jdbcDao.getRowOrders();
+        // Customer customer = jdbcDao.getRowOrders();
+        customerRow.addAll(ordersRowList);
 
         return customerRow;
     }
@@ -178,7 +182,7 @@ public class HomeController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentWindow);
-        stage.setTitle("Remove Order");
+        stage.setTitle("Add Order");
         stage.setScene(new Scene(root));
         stage.show();
 
