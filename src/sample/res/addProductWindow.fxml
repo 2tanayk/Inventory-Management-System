@@ -5,124 +5,121 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-            prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.AddProductWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductWindowController">
     <children>
-        <VBox layoutX="120.0" layoutY="99.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox layoutX="120.0" layoutY="99.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label text="Product Id :">
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
                 <TextField fx:id="addProductId" prefHeight="25.0" prefWidth="258.0">
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
                 <Label text="Product Name :">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
                 <TextField fx:id="addProductName">
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
                 <Label text="Price :">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
                 <TextField fx:id="addProductPrice">
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
                 <Label text="Quantity :">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
                 <TextField fx:id="addProductQuantity">
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
                 <Label text="Image :">
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
                 <TextField fx:id="addProductImage">
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
                 <Label text="Description :">
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
                 <TextArea fx:id="addProductDescription" prefHeight="200.0" prefWidth="200.0">
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextArea>
                 <Label text="Category :">
                     <padding>
-                        <Insets left="5.0" right="10.0"/>
+                        <Insets left="5.0" right="10.0" />
                     </padding>
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
                 <TextField fx:id="addProductCategory">
                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0"/>
+                        <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToInventory" text="Button">
+                <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToInventory" text="Add">
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </Button>
             </children>
             <padding>
-                <Insets bottom="50.0" left="50.0" right="50.0" top="10.0"/>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
             </padding>
         </VBox>
 
