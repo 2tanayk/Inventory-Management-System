@@ -3,6 +3,7 @@ package sample;
 import DataClasses.Customer;
 import DataClasses.Inventory;
 
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -289,22 +290,28 @@ public class HomeController implements Initializable {
 
     }
 
-    public void deleteProductEntry(ActionEvent event) throws IOException {
-        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    public void deleteProductEntry(ActionEvent event) throws Exception {
+//        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteProductWindow.fxml"));
+//        Parent root = fxmlLoader.load();
+//        Stage stage = new Stage();
+//        stage.initModality(Modality.WINDOW_MODAL);
+//        stage.initOwner(parentWindow);
+//        stage.setTitle("Remove Product");
+//        stage.setScene(new Scene(root));
+//        stage.show();
+        ObservableList<Inventory> selectedRow = inventoryTableView.getSelectionModel().getSelectedItems();
+        ObservableList<Inventory> allRows = inventoryTableView.getItems();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteProductWindow.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(parentWindow);
-        stage.setTitle("Remove Product");
-        stage.setScene(new Scene(root));
-        stage.show();
+        JDBCDao jdbcDao = new JDBCDao();
+        jdbcDao.deleteProductFromInventory(selectedRow.get(0).getId());
+
+
+        allRows.removeAll(selectedRow);
     }
 
     public void addCustomerEntry(ActionEvent event) throws IOException {
         Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteCustomerWindow.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();

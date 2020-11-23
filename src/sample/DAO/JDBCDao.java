@@ -20,9 +20,9 @@ public class JDBCDao {
     private static final String SELECT_ROW_QUERY_ORDERS = "SELECT * FROM orders";
     private static final String INSERT_INTO_INVENTORY = "INSERT INTO inventory (id,prod_name,price,qty,img,des," +
             "category) values (?,?,?,?,?,?,?)";
-    //String wl;
     private String wc;
     private String UPDATE_INVENTORY_FIELD_QUERY = "UPDATE inventory SET " + wc + " = ? WHERE id= ?";
+    private final String DELETE_INVENTORY_ROW_QUERY = "DELETE FROM inventory WHERE id = ?";
 
 
     public void insertRecord(String fname, String email, String password) throws Exception {
@@ -206,6 +206,20 @@ public class JDBCDao {
         preparedStatement.close();
         con.close();
 
+    }
+
+    public void deleteProductFromInventory(int id) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(DELETE_INVENTORY_ROW_QUERY);
+
+        preparedStatement.setInt(1, id);
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
     }
 
 
