@@ -20,6 +20,9 @@ public class JDBCDao {
     private static final String SELECT_ROW_QUERY_ORDERS = "SELECT * FROM orders";
     private static final String INSERT_INTO_INVENTORY = "INSERT INTO inventory (id,prod_name,price,qty,img,des," +
             "category) values (?,?,?,?,?,?,?)";
+    //String wl;
+    private String wc;
+    private String UPDATE_INVENTORY_FIELD_QUERY = "UPDATE inventory SET " + wc + " = ? WHERE id= ?";
 
 
     public void insertRecord(String fname, String email, String password) throws Exception {
@@ -134,6 +137,75 @@ public class JDBCDao {
 
         preparedStatement.close();
         con.close();
+    }
+
+    public void updateInventoryField(Inventory inventory, String wc, String q) throws Exception {
+        this.wc = wc;
+        UPDATE_INVENTORY_FIELD_QUERY = "UPDATE inventory SET " + wc + " = ? WHERE id= ?";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(UPDATE_INVENTORY_FIELD_QUERY);
+
+        switch (wc) {
+            case "prod_name":
+                preparedStatement.setString(1, inventory.getName());
+                System.out.println("name field updated!");
+                break;
+            case "img":
+                preparedStatement.setString(1, inventory.getImage());
+                System.out.println("image updated!");
+                break;
+            case "des":
+                preparedStatement.setString(1, inventory.getDescription());
+                System.out.println("description updated!");
+                break;
+            case "category":
+                preparedStatement.setString(1, inventory.getCategory());
+                System.out.println("category updated!");
+                break;
+            default:
+                System.out.println("Oops some thing went wrong!");
+
+        }
+        preparedStatement.setInt(2, inventory.getId());
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
+
+    }
+
+    public void updateInventoryField(Inventory inventory, String wc, int q) throws Exception {
+        this.wc = wc;
+        UPDATE_INVENTORY_FIELD_QUERY = "UPDATE inventory SET " + wc + " = ? WHERE id= ?";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(UPDATE_INVENTORY_FIELD_QUERY);
+
+
+        switch (wc) {
+            case "price":
+                preparedStatement.setInt(1, inventory.getPrice());
+                System.out.println("price field updated!");
+                break;
+            case "qty":
+                preparedStatement.setInt(1, inventory.getQuantity());
+                System.out.println("quantity field updated!");
+                break;
+            default:
+                System.out.println("Oops something went wrong!");
+        }
+
+        preparedStatement.setInt(2, inventory.getId());
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
+
     }
 
 

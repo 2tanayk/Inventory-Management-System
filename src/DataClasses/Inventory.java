@@ -67,4 +67,10 @@ public class Inventory {
     public void setCategory(SimpleStringProperty category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "\nid=" + id + " name=" + name + " price=" + price + " quantity=" + quantity + " " +
+                "image=" + image + " description=" + description + " category=" + category;
+    }
 }

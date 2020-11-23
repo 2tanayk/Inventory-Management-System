@@ -3,9 +3,12 @@ package sample;
 import DataClasses.Customer;
 import DataClasses.Inventory;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,8 +20,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import sample.DAO.JDBCDao;
 
 import java.io.IOException;
@@ -46,7 +51,9 @@ public class HomeController implements Initializable {
     public Button updateBtn;
     public Button deleteBtn;
 
-    public TableView<Customer> ordersTableView;
+    @FXML
+    private TableView<Customer> ordersTableView;
+
     public TableColumn<Customer, Integer> srnoCol;
     public TableColumn<Customer, String> fnameCol;
     public TableColumn<Customer, String> lnameCol;
@@ -64,13 +71,13 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idCol.setCellValueFactory(new PropertyValueFactory<Inventory, Integer>("id"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("name"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<Inventory, Integer>("price"));
-        qtyCol.setCellValueFactory(new PropertyValueFactory<Inventory, Integer>("quantity"));
-        imgCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("image"));
-        descriptionCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("description"));
-        categoryCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("category"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        qtyCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        imgCol.setCellValueFactory(new PropertyValueFactory<>("image"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
 
         srnoCol.setCellValueFactory(new PropertyValueFactory<>("srno"));
         fnameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -90,6 +97,118 @@ public class HomeController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        inventoryTableView.setEditable(true);
+        System.out.println(inventoryTableView.isEditable());
+        colEdit();
+        //idCol.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    private void colEdit() {
+
+        //Inventory inventory;
+        idCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        idCol.setOnEditCommit(inventoryIntegerCellEditEvent -> {
+            Inventory inventory =
+                    inventoryIntegerCellEditEvent.getTableView().getItems().get(inventoryIntegerCellEditEvent.getTablePosition().getRow());
+            inventory.setId(new SimpleIntegerProperty(inventoryIntegerCellEditEvent.getNewValue()));
+            int nId = inventory.getId();
+            System.out.println(nId);
+        });
+
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setOnEditCommit(inventoryStringCellEditEvent -> {
+            Inventory inventory =
+                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
+            inventory.setName(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
+            String nName = inventory.getName();
+            System.out.println(nName);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateInventoryField(inventory, "prod_name", nName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        priceCol.setOnEditCommit(inventoryIntegerCellEditEvent -> {
+            Inventory inventory =
+                    inventoryIntegerCellEditEvent.getTableView().getItems().get(inventoryIntegerCellEditEvent.getTablePosition().getRow());
+            inventory.setPrice(new SimpleIntegerProperty(inventoryIntegerCellEditEvent.getNewValue()));
+            int nPrice = inventory.getPrice();
+            System.out.println(nPrice);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateInventoryField(inventory, "price", nPrice);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        qtyCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        qtyCol.setOnEditCommit(inventoryIntegerCellEditEvent -> {
+            Inventory inventory =
+                    inventoryIntegerCellEditEvent.getTableView().getItems().get(inventoryIntegerCellEditEvent.getTablePosition().getRow());
+            inventory.setQuantity(new SimpleIntegerProperty(inventoryIntegerCellEditEvent.getNewValue()));
+            int nQty = inventory.getQuantity();
+            System.out.println(nQty);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateInventoryField(inventory, "qty", nQty);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        imgCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        imgCol.setOnEditCommit(inventoryStringCellEditEvent -> {
+            Inventory inventory =
+                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
+            inventory.setImage(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
+            String nImg = inventory.getImage();
+            System.out.println(nImg);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateInventoryField(inventory, "img", nImg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionCol.setOnEditCommit(inventoryStringCellEditEvent -> {
+            Inventory inventory =
+                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
+            inventory.setDescription(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
+            String nDescription = inventory.getDescription();
+            System.out.println(nDescription);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateInventoryField(inventory, "des", nDescription);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        categoryCol.setOnEditCommit(inventoryStringCellEditEvent -> {
+            Inventory inventory =
+                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
+            inventory.setCategory(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
+            String nCategory = inventory.getCategory();
+            System.out.println(nCategory);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateInventoryField(inventory, "category", nCategory);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public ObservableList<Inventory> getInventory() throws Exception {
@@ -157,6 +276,10 @@ public class HomeController implements Initializable {
         Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/updateProductWindow.fxml"));
         Parent root = fxmlLoader.load();
+        UpdateProductWindowController updateProductWindowController =
+                (UpdateProductWindowController) fxmlLoader.getController();
+        updateProductWindowController.sInventoryTableView = inventoryTableView;
+
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentWindow);
@@ -217,6 +340,11 @@ public class HomeController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+//    public void editIdCol(TableColumn.CellEditEvent<Inventory, Integer> inventoryIntegerCellEditEvent) {
+//        System.out.println("Im being edited!");
+//
+//    }
 }
 
 
