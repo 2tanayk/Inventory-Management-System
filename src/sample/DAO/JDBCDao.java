@@ -4,10 +4,14 @@ import DataClasses.Customer;
 import DataClasses.Inventory;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JDBCDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbcdemo";
@@ -23,6 +27,10 @@ public class JDBCDao {
     private String wc;
     private String UPDATE_INVENTORY_FIELD_QUERY = "UPDATE inventory SET " + wc + " = ? WHERE id= ?";
     private final String DELETE_INVENTORY_ROW_QUERY = "DELETE FROM inventory WHERE id = ?";
+    private final String BUILD_MAP_QUERY = "SELECT id,prod_name FROM jdbcdemo.inventory;";
+    private final String INSERT_INTO_ORDERS = "INSERT INTO orders (first_name,last_name,email,doo,dod,prod_name," +
+            "price," +
+            "qty,total) VALUES (?,?,?,?,?,?,?,?,?)";
 
 
     public void insertRecord(String fname, String email, String password) throws Exception {
@@ -58,13 +66,13 @@ public class JDBCDao {
         return false;
     }
 
-    public List<Inventory> getRowInventory() throws Exception {
+    public ObservableList<Inventory> getRowInventory() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery(SELECT_ROW_QUERY_INVENTORY);
 
-        List<Inventory> inventoryList = new ArrayList<>();
+        ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
 
         //boolean result = rs.next();
 
@@ -214,6 +222,63 @@ public class JDBCDao {
         PreparedStatement preparedStatement = con.prepareStatement(DELETE_INVENTORY_ROW_QUERY);
 
         preparedStatement.setInt(1, id);
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
+    }
+
+    public HashMap<String, Integer> buildHelperMap() throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        Statement statement = con.createStatement();
+        ResultSet rs = statement.executeQuery(BUILD_MAP_QUERY);
+
+        // boolean result = rs.next();
+
+        List<Customer> ordersList = new ArrayList<>();
+        HashMap<String, Integer> getProductHashMap = new HashMap<>();
+
+
+        while (rs.next()) {
+//            Customer customer = new Customer();
+//            customer.setSrno(new SimpleIntegerProperty(rs.getInt(1)));
+//            customer.setFirstName(new SimpleStringProperty(rs.getString(2)));
+//            customer.setLastName(new SimpleStringProperty(rs.getString(3)));
+//            customer.setEmail(new SimpleStringProperty(rs.getString(4)));
+//            customer.setOrderDate(rs.getDate(5));
+//            customer.setDeliveryDate(rs.getDate(6));
+//            customer.setProductName(new SimpleStringProperty(rs.getString(7)));
+//            customer.setProductPrice(new SimpleIntegerProperty(rs.getInt(8)));
+//            customer.setProductQuantity(new SimpleIntegerProperty(rs.getInt(9)));
+//            customer.setTotalPrice(new SimpleIntegerProperty(rs.getInt(10)));
+            //ordersList.add(customer);
+            getProductHashMap.put(rs.getString(2), rs.getInt(1));
+        }
+
+        statement.close();
+        con.close();
+
+        return getProductHashMap;
+    }
+
+    public void insertProductToOrders(Customer customer) throws Exception {
+        //int id, String productName, int price, int qty, String img,String description, String category
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(INSERT_INTO_ORDERS);
+
+        preparedStatement.setString(1, customer.getFirstName());
+        preparedStatement.setString(2, customer.getLastName());
+        preparedStatement.setString(3, customer.getEmail());
+        preparedStatement.setDate(4, customer.getOrderDate());
+        preparedStatement.setDate(5, customer.getDeliveryDate());
+        preparedStatement.setString(6, customer.getProductName());
+        preparedStatement.setInt(7, customer.getProductPrice());
+        preparedStatement.setInt(8, customer.getProductQuantity());
+        preparedStatement.setInt(9, customer.getTotalPrice());
 
         int count = preparedStatement.executeUpdate();
         System.out.println("Rows affected " + count);

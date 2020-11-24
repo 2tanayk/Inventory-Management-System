@@ -1,9 +1,11 @@
 package DataClasses;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Inventory {
+public class Inventory implements Observable {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private SimpleIntegerProperty price;
@@ -70,7 +72,19 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return getClass().getName() + "\nid=" + id + " name=" + name + " price=" + price + " quantity=" + quantity + " " +
+        return getClass().getName() + "\nid=" + id + " name=" + name + " price=" + price + " quantity=" + quantity +
+                " " +
                 "image=" + image + " description=" + description + " category=" + category;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        System.out.println("There has been a change!");
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+
     }
 }

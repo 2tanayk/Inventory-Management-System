@@ -94,6 +94,7 @@ public class HomeController implements Initializable {
 
         try {
             inventoryTableView.setItems(getInventory());
+            System.out.println("Hsnsbsb");
             ordersTableView.setItems(getCustomer());
         } catch (Exception e) {
             e.printStackTrace();
@@ -226,7 +227,7 @@ public class HomeController implements Initializable {
 
         JDBCDao jdbcDao = new JDBCDao();
 
-        List<Inventory> inventoryRowList = jdbcDao.getRowInventory();
+        ObservableList<Inventory> inventoryRowList = jdbcDao.getRowInventory();
 
         //Inventory inventory = jdbcDao.getRow();
         inventoryRow.addAll(inventoryRowList);
@@ -310,10 +311,18 @@ public class HomeController implements Initializable {
         allRows.removeAll(selectedRow);
     }
 
-    public void addCustomerEntry(ActionEvent event) throws IOException {
+    public void addCustomerEntry(ActionEvent event) throws Exception {
         Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteCustomerWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/addCustomerWindow.fxml"));
         Parent root = fxmlLoader.load();
+
+        AddCustomerWindowController addCustomerWindowController =
+                fxmlLoader.getController();
+        addCustomerWindowController.sOrdersTableView = ordersTableView;
+        addCustomerWindowController.sInventoryTableView = inventoryTableView;
+        addCustomerWindowController.initData(inventoryTableView.getItems());
+
+
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentWindow);
