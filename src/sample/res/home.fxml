@@ -71,8 +71,8 @@
                         <TableColumn fx:id="dodCol" minWidth="5.0" prefWidth="43.20001220703125" text="DOD" />
                         <TableColumn fx:id="productCol" minWidth="5.0" prefWidth="60.79998779296875" text="Product" />
                         <TableColumn fx:id="priceOrderCol" minWidth="5.0" prefWidth="60.0" text="Price" />
-                        <TableColumn fx:id="qtyOrderCol" minWidth="5.0" prefWidth="60.0" text="Quantity" />
-                        <TableColumn fx:id="totalCol" minWidth="5.0" prefWidth="66.39999999999998" text="Total" />
+                        <TableColumn fx:id="qtyOrderCol" minWidth="5.0" prefWidth="73.0" text="Quantity" />
+                        <TableColumn fx:id="totalCol" minWidth="5.0" prefWidth="54.0" text="Total" />
                     </columns>
                   </TableView>
                </children></AnchorPane>

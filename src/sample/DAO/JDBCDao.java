@@ -24,8 +24,10 @@ public class JDBCDao {
     private static final String SELECT_ROW_QUERY_ORDERS = "SELECT * FROM orders";
     private static final String INSERT_INTO_INVENTORY = "INSERT INTO inventory (id,prod_name,price,qty,img,des," +
             "category) values (?,?,?,?,?,?,?)";
-    private String wc;
+    private String wc, wc2;
     private String UPDATE_INVENTORY_FIELD_QUERY = "UPDATE inventory SET " + wc + " = ? WHERE id= ?";
+    private String UPDATE_ORDERS_FIELD_QUERY = "UPDATE inventory SET " + wc2 + " = ? WHERE id= ?";
+
     private final String DELETE_INVENTORY_ROW_QUERY = "DELETE FROM inventory WHERE id = ?";
     private final String BUILD_MAP_QUERY = "SELECT id,prod_name FROM jdbcdemo.inventory;";
     private final String INSERT_INTO_ORDERS = "INSERT INTO orders (first_name,last_name,email,doo,dod,prod_name," +
@@ -285,6 +287,82 @@ public class JDBCDao {
 
         preparedStatement.close();
         con.close();
+    }
+
+    public void updateOrdersField(Customer customer, String wc2, String q) throws Exception {
+        this.wc2 = wc2;
+        System.out.println(wc2);
+        UPDATE_ORDERS_FIELD_QUERY = "UPDATE orders SET " + wc2 + " = ? WHERE srno= ?";
+        System.out.println(UPDATE_ORDERS_FIELD_QUERY);
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(UPDATE_ORDERS_FIELD_QUERY);
+
+        switch (wc2) {
+            case "first_name":
+                preparedStatement.setString(1, customer.getFirstName());
+                System.out.println("first name field updated!");
+                break;
+            case "last_name":
+                preparedStatement.setString(1, customer.getLastName());
+                System.out.println("last name updated!");
+                break;
+            case "email":
+                preparedStatement.setString(1, customer.getEmail());
+                System.out.println("email updated!");
+                break;
+            case "prod_name":
+                preparedStatement.setString(1, customer.getProductName());
+                System.out.println("product name updated!");
+                break;
+            default:
+                System.out.println("Oops some thing went wrong!");
+
+        }
+        preparedStatement.setInt(2, customer.getSrno());
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
+
+    }
+
+    public void updateOrdersField(Customer customer, String wc2, int q) throws Exception {
+        this.wc2 = wc2;
+        UPDATE_ORDERS_FIELD_QUERY = "UPDATE orders SET " + wc2 + " = ? WHERE srno= ?";
+        //System.out.println(UPDATE_INVENTORY_FIELD_QUERY);
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(UPDATE_ORDERS_FIELD_QUERY);
+
+        switch (wc2) {
+            case "price":
+                preparedStatement.setInt(1, customer.getProductPrice());
+                System.out.println("c price field updated!");
+                break;
+            case "qty":
+                preparedStatement.setInt(1, customer.getProductQuantity());
+                System.out.println("c quantity field updated!");
+                break;
+            case "total":
+                preparedStatement.setInt(1, customer.getTotalPrice());
+                System.out.println("total field updated!");
+                break;
+            default:
+                System.out.println("Oops some thing went wrong!");
+        }
+        preparedStatement.setInt(2, customer.getSrno());
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("c Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
+
     }
 
 

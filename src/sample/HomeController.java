@@ -3,33 +3,34 @@ package sample;
 import DataClasses.Customer;
 import DataClasses.Inventory;
 
-import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 import sample.DAO.JDBCDao;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,8 +60,8 @@ public class HomeController implements Initializable {
     public TableColumn<Customer, String> fnameCol;
     public TableColumn<Customer, String> lnameCol;
     public TableColumn<Customer, String> emailCol;
-    public TableColumn<Customer, LocalDate> dooCol;
-    public TableColumn<Customer, LocalDate> dodCol;
+    public TableColumn<Customer, Date> dooCol;
+    public TableColumn<Customer, Date> dodCol;
     public TableColumn<Customer, String> productCol;
     public TableColumn<Customer, Integer> priceOrderCol;
     public TableColumn<Customer, Integer> qtyOrderCol;
@@ -100,13 +101,18 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         inventoryTableView.setEditable(true);
+        ordersTableView.setEditable(true);
         System.out.println(inventoryTableView.isEditable());
-        colEdit();
+        System.out.println(ordersTableView.isEditable());
+
+        inventoryColEdit();
+        ordersColEdit();
+
         //idCol.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
-    private void colEdit() {
 
+    private void inventoryColEdit() {
         //Inventory inventory;
         idCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         idCol.setOnEditCommit(inventoryIntegerCellEditEvent -> {
@@ -135,8 +141,10 @@ public class HomeController implements Initializable {
 
         priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         priceCol.setOnEditCommit(inventoryIntegerCellEditEvent -> {
+            System.out.println("Old Value is : " + inventoryIntegerCellEditEvent.getOldValue());
             Inventory inventory =
                     inventoryIntegerCellEditEvent.getTableView().getItems().get(inventoryIntegerCellEditEvent.getTablePosition().getRow());
+
             inventory.setPrice(new SimpleIntegerProperty(inventoryIntegerCellEditEvent.getNewValue()));
             int nPrice = inventory.getPrice();
             System.out.println(nPrice);
@@ -210,6 +218,210 @@ public class HomeController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
+    }
+
+    private void ordersColEdit() {
+//        srnoCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+//        srnoCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
+//            Customer customer =
+//                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent
+//                    .getTablePosition().getRow());
+//            customer.setSrno(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
+//            int nId = customer.getSrno();
+//            System.out.println(nId);
+//        });
+
+        fnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        fnameCol.setOnEditCommit(ordersStringCellEditEvent -> {
+            Customer customer =
+                    ordersStringCellEditEvent.getTableView().getItems().get(ordersStringCellEditEvent.getTablePosition().getRow());
+            customer.setFirstName(new SimpleStringProperty(ordersStringCellEditEvent.getNewValue()));
+            String nFirstName = customer.getFirstName();
+            System.out.println(nFirstName);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateOrdersField(customer, "first_name", nFirstName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        lnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        lnameCol.setOnEditCommit(ordersStringCellEditEvent -> {
+            Customer customer =
+                    ordersStringCellEditEvent.getTableView().getItems().get(ordersStringCellEditEvent.getTablePosition().getRow());
+            customer.setLastName(new SimpleStringProperty(ordersStringCellEditEvent.getNewValue()));
+            String nLastName = customer.getLastName();
+            System.out.println(nLastName);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateOrdersField(customer, "last_name", nLastName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailCol.setOnEditCommit(ordersStringCellEditEvent -> {
+            Customer customer =
+                    ordersStringCellEditEvent.getTableView().getItems().get(ordersStringCellEditEvent.getTablePosition().getRow());
+            customer.setEmail(new SimpleStringProperty(ordersStringCellEditEvent.getNewValue()));
+            String nEmail = customer.getEmail();
+            System.out.println(nEmail);
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateOrdersField(customer, "email", nEmail);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+//        dooCol.setCellFactory(new Callback<TableColumn<Customer, Date>, TableCell<Customer, Date>>() {
+//            @Override
+//            public TableCell<Customer, Date> call(TableColumn<Customer, Date> customerDateTableColumn) {
+//                return null;
+//            }
+//        });
+//        dooCol.setOnEditCommit(ordersDateCellEditEvent -> {
+//            Customer customer =
+//                    ordersDateCellEditEvent.getTableView().getItems().get(ordersDateCellEditEvent.getTablePosition
+//                    ().getRow());
+//            customer.setOrderDate(ordersDateCellEditEvent.getNewValue());
+//            String nDoo = customer.getOrderDate().toString();
+//            System.out.println(nDoo);
+//        });
+
+        //  dodCol.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+//        dodCol.setOnEditCommit(ordersDateCellEditEvent -> {
+//            Customer customer =
+//                    ordersDateCellEditEvent.getTableView().getItems().get(ordersDateCellEditEvent.getTablePosition
+//                    ().getRow());
+//            customer.setDeliveryDate(Date.valueOf(ordersDateCellEditEvent.getNewValue()));
+//            String nDod = customer.getOrderDate().toString();
+//            System.out.println(nDod);
+//        });
+
+        productCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        productCol.setOnEditCommit(ordersStringCellEditEvent -> {
+            Customer customer =
+                    ordersStringCellEditEvent.getTableView().getItems().get(ordersStringCellEditEvent.getTablePosition().getRow());
+            customer.setProductName(new SimpleStringProperty(ordersStringCellEditEvent.getNewValue()));
+            String nProductName = customer.getProductName();
+            System.out.println(nProductName);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateOrdersField(customer, "prod_name", nProductName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        priceOrderCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        priceOrderCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
+            Customer customer =
+                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent.getTablePosition().getRow());
+            customer.setProductPrice(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
+            int nPrice = customer.getProductPrice();
+            System.out.println(nPrice);
+
+            JDBCDao jdbcDao = new JDBCDao();
+            try {
+                jdbcDao.updateOrdersField(customer, "price", nPrice);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        qtyOrderCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        qtyOrderCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
+            ObservableList<Inventory> hObsL = inventoryTableView.getItems();
+            System.out.println("Inventory:" + hObsL);
+
+            int oQuantity = ordersIntegerCellEditEvent.getOldValue();//old quantity
+            Customer customer =
+                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent.getTablePosition().getRow());
+            String productName = customer.getProductName();
+            System.out.println("Product Name is " + productName);
+
+            customer.setProductQuantity(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
+            int nQuantity = customer.getProductQuantity();
+            System.out.println("Old Value: " + oQuantity + " New Value: " + nQuantity);
+            //System.out.println(nQuantity);
+            JDBCDao jdbcDao = new JDBCDao();
+            HashMap<String, Integer> helperHashMap = null;
+            try {
+                helperHashMap = jdbcDao.buildHelperMap();
+                System.out.println(helperHashMap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            int reqId = helperHashMap.get(productName);
+            System.out.println("Required Id is:" + reqId);
+
+            int d = oQuantity - nQuantity;
+            System.out.println("dIFFERENCE:" + d);
+
+            for (Inventory i : hObsL) {
+                System.out.println("looping");
+                if (i.getId() == reqId) {
+                    if (d > 0) {
+                        System.out.println("in d>0");
+                        i.setQuantity(new SimpleIntegerProperty(i.getQuantity() + d));
+                        inventoryTableView.refresh();
+                        try {
+                            jdbcDao.updateInventoryField(i, "qty", reqId);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            e.printStackTrace();
+                        }
+                        break;
+                    } else if (d < 0) {
+                        System.out.println("in d<0");
+                        i.setQuantity(new SimpleIntegerProperty(i.getQuantity() + d));
+                        inventoryTableView.refresh();
+                        try {
+                            jdbcDao.updateInventoryField(i, "qty", reqId);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            e.printStackTrace();
+                        }
+                        break;
+                    } else {
+                        i.setQuantity(new SimpleIntegerProperty(0));
+                        inventoryTableView.refresh();
+                        try {
+                            jdbcDao.updateInventoryField(i, "qty", reqId);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    //i.setQuantity(new SimpleIntegerProperty(i.getQuantity() - qty));
+                }
+            }
+            customer.setTotalPrice(new SimpleIntegerProperty(nQuantity * customer.getProductPrice()));
+            ordersTableView.refresh();
+
+            try {
+                jdbcDao.updateOrdersField(customer, "qty", nQuantity);
+                jdbcDao.updateOrdersField(customer, "total", 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        totalCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        totalCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
+            Customer customer =
+                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent.getTablePosition().getRow());
+            customer.setTotalPrice(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
+            int nTotal = customer.getProductQuantity();
+            System.out.println(nTotal);
         });
     }
 
