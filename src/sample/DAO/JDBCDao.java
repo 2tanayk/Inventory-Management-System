@@ -33,6 +33,7 @@ public class JDBCDao {
     private final String INSERT_INTO_ORDERS = "INSERT INTO orders (first_name,last_name,email,doo,dod,prod_name," +
             "price," +
             "qty,total) VALUES (?,?,?,?,?,?,?,?,?)";
+    private final String DELETE_ORDERS_ROW_QUERY = "DELETE FROM orders WHERE srno = ?";
 
 
     public void insertRecord(String fname, String email, String password) throws Exception {
@@ -366,4 +367,17 @@ public class JDBCDao {
     }
 
 
+    public void deleteCustomerFromOrders(int srno) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        PreparedStatement preparedStatement = con.prepareStatement(DELETE_ORDERS_ROW_QUERY);
+
+        preparedStatement.setInt(1, srno);
+
+        int count = preparedStatement.executeUpdate();
+        System.out.println("Rows affected " + count);
+
+        preparedStatement.close();
+        con.close();
+    }
 }

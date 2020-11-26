@@ -123,21 +123,22 @@ public class HomeController implements Initializable {
             System.out.println(nId);
         });
 
-        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        nameCol.setOnEditCommit(inventoryStringCellEditEvent -> {
-            Inventory inventory =
-                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
-            inventory.setName(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
-            String nName = inventory.getName();
-            System.out.println(nName);
-
-            JDBCDao jdbcDao = new JDBCDao();
-            try {
-                jdbcDao.updateInventoryField(inventory, "prod_name", nName);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+//        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+//        nameCol.setOnEditCommit(inventoryStringCellEditEvent -> {
+//            Inventory inventory =
+//                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent
+//                    .getTablePosition().getRow());
+//            inventory.setName(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
+//            String nName = inventory.getName();
+//            System.out.println(nName);
+//
+//            JDBCDao jdbcDao = new JDBCDao();
+//            try {
+//                jdbcDao.updateInventoryField(inventory, "prod_name", nName);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
 
         priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         priceCol.setOnEditCommit(inventoryIntegerCellEditEvent -> {
@@ -303,37 +304,39 @@ public class HomeController implements Initializable {
 //            System.out.println(nDod);
 //        });
 
-        productCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        productCol.setOnEditCommit(ordersStringCellEditEvent -> {
-            Customer customer =
-                    ordersStringCellEditEvent.getTableView().getItems().get(ordersStringCellEditEvent.getTablePosition().getRow());
-            customer.setProductName(new SimpleStringProperty(ordersStringCellEditEvent.getNewValue()));
-            String nProductName = customer.getProductName();
-            System.out.println(nProductName);
+//        productCol.setCellFactory(TextFieldTableCell.forTableColumn());
+//        productCol.setOnEditCommit(ordersStringCellEditEvent -> {
+//            Customer customer =
+//                    ordersStringCellEditEvent.getTableView().getItems().get(ordersStringCellEditEvent
+//                    .getTablePosition().getRow());
+//            customer.setProductName(new SimpleStringProperty(ordersStringCellEditEvent.getNewValue()));
+//            String nProductName = customer.getProductName();
+//            System.out.println(nProductName);
+//
+//            JDBCDao jdbcDao = new JDBCDao();
+//            try {
+//                jdbcDao.updateOrdersField(customer, "prod_name", nProductName);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
 
-            JDBCDao jdbcDao = new JDBCDao();
-            try {
-                jdbcDao.updateOrdersField(customer, "prod_name", nProductName);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        priceOrderCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        priceOrderCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
-            Customer customer =
-                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent.getTablePosition().getRow());
-            customer.setProductPrice(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
-            int nPrice = customer.getProductPrice();
-            System.out.println(nPrice);
-
-            JDBCDao jdbcDao = new JDBCDao();
-            try {
-                jdbcDao.updateOrdersField(customer, "price", nPrice);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+//        priceOrderCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+//        priceOrderCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
+//            Customer customer =
+//                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent
+//                    .getTablePosition().getRow());
+//            customer.setProductPrice(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
+//            int nPrice = customer.getProductPrice();
+//            System.out.println(nPrice);
+//
+//            JDBCDao jdbcDao = new JDBCDao();
+//            try {
+//                jdbcDao.updateOrdersField(customer, "price", nPrice);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
 
         qtyOrderCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         qtyOrderCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
@@ -415,14 +418,16 @@ public class HomeController implements Initializable {
 
         });
 
-        totalCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        totalCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
-            Customer customer =
-                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent.getTablePosition().getRow());
-            customer.setTotalPrice(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
-            int nTotal = customer.getProductQuantity();
-            System.out.println(nTotal);
-        });
+//        totalCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+//        totalCol.setOnEditCommit(ordersIntegerCellEditEvent -> {
+//            Customer customer =
+//                    ordersIntegerCellEditEvent.getTableView().getItems().get(ordersIntegerCellEditEvent
+//                    .getTablePosition().getRow());
+//            customer.setTotalPrice(new SimpleIntegerProperty(ordersIntegerCellEditEvent.getNewValue()));
+//            int nTotal = customer.getProductQuantity();
+//            System.out.println(nTotal);
+//        });
+
     }
 
     public ObservableList<Inventory> getInventory() throws Exception {
@@ -557,22 +562,52 @@ public class HomeController implements Initializable {
 
     }
 
-    public void deleteCustomerEntry(ActionEvent event) throws IOException {
-        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteCustomerWindow.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(parentWindow);
-        stage.setTitle("Delete Order");
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
+    public void deleteCustomerEntry(ActionEvent event) throws Exception {
+//        Stage parentWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("res/deleteCustomerWindow.fxml"));
+//        Parent root = fxmlLoader.load();
+//        Stage stage = new Stage();
+//        stage.initModality(Modality.WINDOW_MODAL);
+//        stage.initOwner(parentWindow);
+//        stage.setTitle("Delete Order");
+//        stage.setScene(new Scene(root));
+//        stage.show();
+
+        ObservableList<Customer> selectedRow = ordersTableView.getSelectionModel().getSelectedItems();
+        ObservableList<Customer> allRows = ordersTableView.getItems();
+
+        ObservableList<Inventory> mItems = inventoryTableView.getItems();
+
+        Customer selectedCustomer = selectedRow.get(0);
+        int srno = selectedCustomer.getSrno();
+        String productName = selectedCustomer.getProductName();
+        int qty = selectedCustomer.getProductQuantity();
+
+        JDBCDao jdbcDao = new JDBCDao();
+        HashMap<String, Integer> helperHashMap = jdbcDao.buildHelperMap();
+
+        int reqId = helperHashMap.get(productName);
+
+
+        for (Inventory i : mItems) {
+            System.out.println("looping");
+            if (i.getId() == reqId) {
+                i.setQuantity(new SimpleIntegerProperty(i.getQuantity() + qty));
+                inventoryTableView.refresh();
+                jdbcDao.updateInventoryField(i, "qty", reqId);
+                break;
+            }
+        }
+
+        allRows.removeAll(selectedRow);
+        jdbcDao.deleteCustomerFromOrders(srno);
+
 
 //    public void editIdCol(TableColumn.CellEditEvent<Inventory, Integer> inventoryIntegerCellEditEvent) {
 //        System.out.println("Im being edited!");
 //
 //    }
+    }
 }
 
 
