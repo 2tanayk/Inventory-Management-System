@@ -108,7 +108,6 @@ public class HomeController implements Initializable {
 
         inventoryColEdit();
         ordersColEdit();
-
         //idCol.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
@@ -175,7 +174,12 @@ public class HomeController implements Initializable {
             }
         });
 
-//        imgCol.setCellFactory(TextFieldTableCell.forTableColumn());
+//        imgCol.setCellFactory(new Callback<TableColumn<Inventory, ImageView>, TableCell<Inventory, ImageView>>() {
+//            @Override
+//            public TableCell<Inventory, ImageView> call(TableColumn<Inventory, ImageView> inventoryImageViewTableColumn) {
+//                return null;
+//            }
+//        });
 //        imgCol.setOnEditCommit(inventoryStringCellEditEvent -> {
 //            Inventory inventory =
 //                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
@@ -190,6 +194,7 @@ public class HomeController implements Initializable {
 //                e.printStackTrace();
 //            }
 //        });
+
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setOnEditCommit(inventoryStringCellEditEvent -> {
             Inventory inventory =
