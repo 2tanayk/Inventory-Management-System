@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -45,7 +46,7 @@ public class HomeController implements Initializable {
     public TableColumn<Inventory, String> nameCol;
     public TableColumn<Inventory, Integer> priceCol;
     public TableColumn<Inventory, Integer> qtyCol;
-    public TableColumn<Inventory, String> imgCol;
+    public TableColumn<Inventory, ImageView> imgCol;
     public TableColumn<Inventory, String> descriptionCol;
     public TableColumn<Inventory, String> categoryCol;
 
@@ -174,21 +175,21 @@ public class HomeController implements Initializable {
             }
         });
 
-        imgCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        imgCol.setOnEditCommit(inventoryStringCellEditEvent -> {
-            Inventory inventory =
-                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
-            inventory.setImage(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
-            String nImg = inventory.getImage();
-            System.out.println(nImg);
-
-            JDBCDao jdbcDao = new JDBCDao();
-            try {
-                jdbcDao.updateInventoryField(inventory, "img", nImg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+//        imgCol.setCellFactory(TextFieldTableCell.forTableColumn());
+//        imgCol.setOnEditCommit(inventoryStringCellEditEvent -> {
+//            Inventory inventory =
+//                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
+//            inventory.setImage(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
+//            String nImg = inventory.getImage();
+//            System.out.println(nImg);
+//
+//            JDBCDao jdbcDao = new JDBCDao();
+//            try {
+//                jdbcDao.updateInventoryField(inventory, "img", nImg);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setOnEditCommit(inventoryStringCellEditEvent -> {
             Inventory inventory =

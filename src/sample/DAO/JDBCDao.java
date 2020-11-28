@@ -6,12 +6,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class JDBCDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbcdemo";
@@ -85,7 +87,11 @@ public class JDBCDao {
             inventory.setName(new SimpleStringProperty(rs.getString(2)));
             inventory.setPrice(new SimpleIntegerProperty(rs.getInt(3)));
             inventory.setQuantity(new SimpleIntegerProperty(rs.getInt(4)));
-            inventory.setImage(new SimpleStringProperty(rs.getString(5)));
+
+            File file = new File(rs.getString(5));
+            Image image = new Image(file.toURI().toString(), 50, 50, false, false);
+            inventory.setImage(new ImageView(image)); //rs.getString(5)
+
             inventory.setDescription(new SimpleStringProperty(rs.getString(6)));
             inventory.setCategory(new SimpleStringProperty(rs.getString(7)));
 
@@ -139,7 +145,7 @@ public class JDBCDao {
         preparedStatement.setString(2, inventory.getName());
         preparedStatement.setInt(3, inventory.getPrice());
         preparedStatement.setInt(4, inventory.getQuantity());
-        preparedStatement.setString(5, inventory.getImage());
+        preparedStatement.setString(5, inventory.getUrl());
         preparedStatement.setString(6, inventory.getDescription());
         preparedStatement.setString(7, inventory.getCategory());
 
@@ -163,7 +169,7 @@ public class JDBCDao {
                 System.out.println("name field updated!");
                 break;
             case "img":
-                preparedStatement.setString(1, inventory.getImage());
+                preparedStatement.setString(1, inventory.getImage().toString());
                 System.out.println("image updated!");
                 break;
             case "des":

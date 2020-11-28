@@ -81,11 +81,11 @@
                         <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="addProductImage">
-                    <VBox.margin>
-                        <Insets bottom="10.0" top="5.0" />
-                    </VBox.margin>
-                </TextField>
+            <Button fx:id="addProductImage" mnemonicParsing="false" onAction="#addProductImageFromDrive" text="Choose Image">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="5.0" />
+               </VBox.margin>
+            </Button>
                 <Label text="Description :">
                     <padding>
                         <Insets left="5.0" right="10.0" />
