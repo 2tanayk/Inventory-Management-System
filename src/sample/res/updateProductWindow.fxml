@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.UpdateProductWindowController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UpdateProductWindowController">
+
+    <children>
+        <VBox layoutX="120.0" layoutY="99.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label text="Product Id :">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="updateProductId" prefHeight="25.0" prefWidth="258.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label text="Product Name :">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                </Label>
+                <TextField fx:id="updateProductName">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label text="Price :">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                </Label>
+                <TextField fx:id="updateProductPrice">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label text="Quantity :">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                </Label>
+                <TextField fx:id="updateProductQuantity">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label text="Image :">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                </Label>
+                <TextField fx:id="updateProductImage">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label text="Description :">
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextArea fx:id="updateProductDescription" prefHeight="200.0" prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextArea>
+                <Label text="Category :">
+                    <padding>
+                        <Insets left="5.0" right="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="updateProductCategory">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <Button fx:id="updateProductBtn" mnemonicParsing="false" onAction="#updateProductToInventory" text="Update">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
+            </padding>
+        </VBox>
+
+    </children>
 
 </AnchorPane>

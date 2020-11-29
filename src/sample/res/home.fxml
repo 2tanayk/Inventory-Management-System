@@ -1,82 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="575.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
-<!--<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="678.0" style="-fx-background-color: #96439A;" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"> -->
-  <tabs>
-    <Tab id="inventoryTab" fx:id="inventoryTab" text="Inventory">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <VBox layoutX="478.0" prefHeight="419.0" prefWidth="153.0" style="-fx-background-color: #2A0033;">
-                     <children>
-                        <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addProductEntry" prefHeight="77.0" prefWidth="98.0" style="-fx-background-color: #2A0033;" text="ADD" textFill="#fdf6f6">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                        <Button fx:id="updateBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateProductEntry" prefHeight="71.0" prefWidth="98.0" style="-fx-background-color: #2A0033;" text="UPDATE" textFill="#f0eaea">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                        <Button fx:id="deleteBtn" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#deleteProductEntry" prefHeight="71.0" prefWidth="98.0" style="-fx-background-color: #2A0033;" text="DELETE" textFill="#fffdfd">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                     </children>
-                  </VBox>
-                  <TableView fx:id="inventoryTableView" prefHeight="419.0" prefWidth="478.0">
-                    <columns>
-                      <TableColumn fx:id="idCol" prefWidth="47.20001143217087" text="Id" />
-                      <TableColumn fx:id="nameCol" prefWidth="57.000003814697266" text="Name" />
-                        <TableColumn fx:id="priceCol" prefWidth="62.399993896484375" text="Price" />
-                        <TableColumn fx:id="qtyCol" prefWidth="75.20001220703125" text="Quantity" />
-                        <TableColumn fx:id="imgCol" prefWidth="72.19999694824219" text="Image" />
-                        <TableColumn fx:id="descriptionCol" prefWidth="82.4000244140625" text="Description" />
-                        <TableColumn fx:id="categoryCol" prefWidth="85.4000244140625" text="Category" />
-                    </columns>
-                  </TableView>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab id="orderTab" fx:id="orderTab" text="Orders">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <VBox layoutX="473.0" prefHeight="419.0" prefWidth="153.0" style="-fx-background-color: #2A0033;">
-                     <children>
-                        <Button fx:id="cAddBtn" mnemonicParsing="false" onAction="#addCustomerEntry" prefHeight="68.0" prefWidth="103.0" style="-fx-background-color: #2A0033;" text="ADD" textAlignment="CENTER" textFill="#ffffff" wrapText="true">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                        <Button fx:id="cUpdateBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateCustomerEntry" prefHeight="69.0" prefWidth="103.0" style="-fx-background-color: #2A0033;" text="UPDATE" textFill="#fffefe">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                        <Button fx:id="cDeleteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCustomerEntry" prefHeight="67.0" prefWidth="103.0" style="-fx-background-color: #2A0033;" text="DELETE" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                     </children>
-                  </VBox>
-                  <TableView fx:id="ordersTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="419.0" prefWidth="474.0" tableMenuButtonVisible="true">
-                    <columns>
-                        <TableColumn fx:id="srnoCol" minWidth="5.0" prefWidth="44.00000077486038" text="Sr. No." />
-                        <TableColumn fx:id="fnameCol" minWidth="5.0" prefWidth="53.60000228881836" text="Name" />
-                        <TableColumn fx:id="lnameCol" minWidth="5.0" prefWidth="64.0" text="Surname" />
-                        <TableColumn fx:id="emailCol" minWidth="5.0" prefWidth="53.60003662109375" text="Email" />
-                        <TableColumn fx:id="dooCol" minWidth="5.0" prefWidth="40.00001525878906" text="DOO" />
-                        <TableColumn fx:id="dodCol" minWidth="5.0" prefWidth="43.20001220703125" text="DOD" />
-                        <TableColumn fx:id="productCol" minWidth="5.0" prefWidth="60.79998779296875" text="Product" />
-                        <TableColumn fx:id="priceOrderCol" minWidth="5.0" prefWidth="60.0" text="Price" />
-                        <TableColumn fx:id="qtyOrderCol" minWidth="5.0" prefWidth="60.0" text="Quantity" />
-                        <TableColumn fx:id="totalCol" minWidth="5.0" prefWidth="66.39999999999998" text="Total" />
-                    </columns>
-                  </TableView>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-  </tabs>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="839.0" style="-fx-border-radius: 30; -fx-background-radius: 30;" stylesheets="@tabpane.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
+    <!--<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="678.0" style="-fx-background-color: #96439A;" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"> -->
+    <tabs>
+        <Tab id="inventoryTab" fx:id="inventoryTab" style="-fx-padding: 5 175 5 200;" text="Inventory">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <VBox layoutX="680.0" layoutY="-1.0" prefHeight="601.0" prefWidth="161.0" style="-fx-background-color: #2d3447;">
+                            <children>
+                                <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addProductEntry" prefHeight="98.0" prefWidth="159.0" style="-fx-background-color: #2d3447;" stylesheets="@tableview.css" text="ADD" textFill="#fdf6f6">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="deleteBtn" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#deleteProductEntry" prefHeight="104.0" prefWidth="161.0" style="-fx-background-color: #2d3447;" text="DELETE" textFill="#fffdfd">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <TableView fx:id="inventoryTableView" prefHeight="601.0" prefWidth="680.0" style="-fx-background-color: #c3e0e8;" stylesheets="@tableview.css">
+                            <columns>
+                                <TableColumn fx:id="idCol" prefWidth="64.0" text="Id" />
+                                <TableColumn fx:id="nameCol" prefWidth="123.20001220703125" text="Name" />
+                                <TableColumn fx:id="priceCol" prefWidth="80.79998779296875" text="Price" />
+                                <TableColumn fx:id="qtyCol" prefWidth="68.79998779296875" text="Quantity" />
+                                <TableColumn fx:id="imgCol" prefWidth="100.800048828125" text="Image" />
+                                <TableColumn fx:id="descriptionCol" prefWidth="139.199951171875" text="Description" />
+                                <TableColumn fx:id="categoryCol" prefWidth="100.79998779296875" text="Category" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab id="orderTab" fx:id="orderTab" style="-fx-padding: 5 175 5 178;" text="Orders">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <VBox layoutX="679.0" prefHeight="601.0" prefWidth="161.0" style="-fx-background-color: #2d3447;">
+                            <children>
+                                <Button fx:id="cAddBtn" mnemonicParsing="false" onAction="#addCustomerEntry" prefHeight="100.0" prefWidth="161.0" style="-fx-background-color: #2d3447;" text="ADD" textAlignment="CENTER" textFill="#ffffff" wrapText="true">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="cDeleteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCustomerEntry" prefHeight="105.0" prefWidth="160.0" style="-fx-background-color: #2d3447;" text="DELETE" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <TableView fx:id="ordersTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="601.0" prefWidth="680.0" style="-fx-background-color: #c3e0e8;" stylesheets="@tableview.css" tableMenuButtonVisible="true">
+                            <columns>
+                                <TableColumn fx:id="srnoCol" minWidth="5.0" prefWidth="62.39996337890625" text="Order No." />
+                                <TableColumn fx:id="fnameCol" minWidth="5.0" prefWidth="72.79998779296875" text="Name" />
+                                <TableColumn fx:id="lnameCol" minWidth="5.0" prefWidth="77.5999755859375" text="Surname" />
+                                <TableColumn fx:id="emailCol" minWidth="5.0" prefWidth="71.20001220703125" text="Email" />
+                                <TableColumn fx:id="dooCol" minWidth="5.0" prefWidth="56.0" text="DOO" />
+                                <TableColumn fx:id="dodCol" minWidth="5.0" prefWidth="65.60003662109375" text="DOD" />
+                                <TableColumn fx:id="productCol" minWidth="5.0" prefWidth="73.60003662109375" text="Product" />
+                                <TableColumn fx:id="priceOrderCol" minWidth="5.0" prefWidth="55.199951171875" text="Price" />
+                                <TableColumn fx:id="qtyOrderCol" minWidth="5.0" prefWidth="72.0" text="Quantity" />
+                                <TableColumn fx:id="totalCol" minWidth="5.0" prefWidth="61.60003662109375" text="Total" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
 </TabPane>

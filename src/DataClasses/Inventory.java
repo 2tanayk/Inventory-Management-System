@@ -1,16 +1,20 @@
 package DataClasses;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.ImageView;
 
-public class Inventory {
+public class Inventory implements Observable {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private SimpleIntegerProperty price;
     private SimpleIntegerProperty quantity;
-    private SimpleStringProperty image;
+    private ImageView image;
     private SimpleStringProperty description;
     private SimpleStringProperty category;
+    private SimpleStringProperty url;
 
     public int getId() {
         return id.get();
@@ -44,11 +48,11 @@ public class Inventory {
         this.quantity = quantity;
     }
 
-    public String getImage() {
-        return image.get();
+    public ImageView getImage() {
+        return image;
     }
 
-    public void setImage(SimpleStringProperty image) {
+    public void setImage(ImageView image) {
         this.image = image;
     }
 
@@ -66,5 +70,32 @@ public class Inventory {
 
     public void setCategory(SimpleStringProperty category) {
         this.category = category;
+    }
+
+    public String getUrl() {
+        return url.get();
+    }
+
+    public void setUrl(SimpleStringProperty url) {
+        this.url = url;
+    }
+
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "\nid=" + id + " name=" + name + " price=" + price + " quantity=" + quantity +
+                " " +
+                "image=" + image + " description=" + description + " category=" + category;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        System.out.println("There has been a change!");
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+
     }
 }
