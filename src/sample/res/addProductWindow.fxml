@@ -10,9 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductWindowController">
     <children>
         <VBox prefHeight="593.0" prefWidth="488.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
             <children>
                 <Label text="Product ID :" textFill="#f0e9e9">
                     <opaqueInsets>
@@ -86,6 +88,7 @@
                         <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
+
                 <Button fx:id="addProductImage" mnemonicParsing="false" onAction="#addProductImageFromDrive" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Choose Image">
                     <VBox.margin>
                         <Insets bottom="10.0" top="5.0" />
@@ -95,6 +98,7 @@
                </effect>
                 </Button>
                 <Label text="Description :" textFill="#faf5f5">
+
                     <padding>
                         <Insets left="5.0" right="10.0" />
                     </padding>
@@ -120,7 +124,9 @@
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
+
                 <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToInventory" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Add">
+
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>

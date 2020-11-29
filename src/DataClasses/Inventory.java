@@ -98,4 +98,6 @@ public class Inventory implements Observable {
     public void removeListener(InvalidationListener invalidationListener) {
 
     }
+
 }
+

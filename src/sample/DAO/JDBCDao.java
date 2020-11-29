@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class JDBCDao {
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/javafx_registration";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbcdemo";
     private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "root";
+    private static final String DATABASE_PASSWORD = "vhFMHCb$&*^%Uw*#";
     private static final String INSERT_QUERY = "insert into registration (full_name, email_id, password) values (?, " +
             "?, ?)";
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
@@ -31,7 +31,9 @@ public class JDBCDao {
     private String UPDATE_ORDERS_FIELD_QUERY = "UPDATE inventory SET " + wc2 + " = ? WHERE id= ?";
 
     private final String DELETE_INVENTORY_ROW_QUERY = "DELETE FROM inventory WHERE id = ?";
-    private final String BUILD_MAP_QUERY = "SELECT id,prod_name FROM javafx_registration.inventory;";
+
+    private final String BUILD_MAP_QUERY = "SELECT id,prod_name FROM jdbcdemo.inventory;";
+
     private final String INSERT_INTO_ORDERS = "INSERT INTO orders (first_name,last_name,email,doo,dod,prod_name," +
             "price," +
             "qty,total) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -386,4 +388,6 @@ public class JDBCDao {
         preparedStatement.close();
         con.close();
     }
+
 }
+

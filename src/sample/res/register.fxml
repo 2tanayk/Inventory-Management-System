@@ -14,9 +14,11 @@
             <children>
                 <AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #2D3447;">
                     <children>
+
                         <TextField id="nameTextField" fx:id="nameTextField" layoutX="122.0" layoutY="184.0" prefHeight="26.0" prefWidth="237.0" promptText="Username" style="-fx-border-color: #2196f3; -fx-background-color: #a0a2ab; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20; -fx-prompt-text-fill: #2D3447;" />
                         <TextField id="registerEmailText" fx:id="registerEmailText" layoutX="122.0" layoutY="244.0" prefHeight="26.0" prefWidth="237.0" promptText="Email" style="-fx-border-color: #2196f3; -fx-background-color: #a0a2ab; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20; -fx-prompt-text-fill: #2D3447;" />
                         <PasswordField id="registerPasswordText" fx:id="registerPasswordText" layoutX="122.0" layoutY="300.0" prefHeight="26.0" prefWidth="237.0" promptText="Password" style="-fx-border-color: #2196f3; -fx-background-color: #a0a2ab; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20; -fx-prompt-text-fill: #2d3447;" />
+
                         <Separator layoutX="29.0" layoutY="395.0" prefHeight="8.0" prefWidth="341.0" />
                         <Separator layoutX="25.0" layoutY="122.0" prefHeight="8.0" prefWidth="341.0" />
                         <Button id="registerBtn" fx:id="registerBtn" defaultButton="true" layoutX="64.0" layoutY="440.0" mnemonicParsing="false" onAction="#register" prefHeight="42.0" prefWidth="101.0" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="Register">

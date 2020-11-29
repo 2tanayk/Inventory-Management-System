@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="839.0" style="-fx-border-radius: 30; -fx-background-radius: 30;" stylesheets="@tabpane.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
     <!--<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="678.0" style="-fx-background-color: #96439A;" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"> -->
     <tabs>
@@ -26,10 +27,12 @@
                                 <Button fx:id="deleteBtn" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#deleteProductEntry" prefHeight="104.0" prefWidth="161.0" style="-fx-background-color: #2d3447;" text="DELETE" textFill="#fffdfd">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
+
                                     </font>
                                 </Button>
                             </children>
                         </VBox>
+
                         <TableView fx:id="inventoryTableView" prefHeight="601.0" prefWidth="680.0" style="-fx-background-color: #c3e0e8;" stylesheets="@tableview.css">
                             <columns>
                                 <TableColumn fx:id="idCol" prefWidth="64.0" text="Id" />
@@ -39,12 +42,14 @@
                                 <TableColumn fx:id="imgCol" prefWidth="100.800048828125" text="Image" />
                                 <TableColumn fx:id="descriptionCol" prefWidth="139.199951171875" text="Description" />
                                 <TableColumn fx:id="categoryCol" prefWidth="100.79998779296875" text="Category" />
+
                             </columns>
                         </TableView>
                     </children>
                 </AnchorPane>
             </content>
         </Tab>
+
         <Tab id="orderTab" fx:id="orderTab" style="-fx-padding: 5 175 5 178;" text="Orders">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -59,10 +64,12 @@
                                 <Button fx:id="cDeleteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCustomerEntry" prefHeight="105.0" prefWidth="160.0" style="-fx-background-color: #2d3447;" text="DELETE" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
+
                                     </font>
                                 </Button>
                             </children>
                         </VBox>
+
                         <TableView fx:id="ordersTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="601.0" prefWidth="680.0" style="-fx-background-color: #c3e0e8;" stylesheets="@tableview.css" tableMenuButtonVisible="true">
                             <columns>
                                 <TableColumn fx:id="srnoCol" minWidth="5.0" prefWidth="62.39996337890625" text="Order No." />
@@ -75,6 +82,7 @@
                                 <TableColumn fx:id="priceOrderCol" minWidth="5.0" prefWidth="55.199951171875" text="Price" />
                                 <TableColumn fx:id="qtyOrderCol" minWidth="5.0" prefWidth="72.0" text="Quantity" />
                                 <TableColumn fx:id="totalCol" minWidth="5.0" prefWidth="61.60003662109375" text="Total" />
+
                             </columns>
                         </TableView>
                     </children>
