@@ -1,13 +1,16 @@
 package sample;
 
 import DataClasses.Customer;
+import DataClasses.DatePickerCell;
 import DataClasses.Inventory;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,6 +74,8 @@ public class HomeController implements Initializable {
     public Button cAddBtn;
     public Button cUpdateBtn;
     public Button cDeleteBtn;
+
+    ObservableList<Customer> customerRow;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -176,13 +181,15 @@ public class HomeController implements Initializable {
 
 //        imgCol.setCellFactory(new Callback<TableColumn<Inventory, ImageView>, TableCell<Inventory, ImageView>>() {
 //            @Override
-//            public TableCell<Inventory, ImageView> call(TableColumn<Inventory, ImageView> inventoryImageViewTableColumn) {
+//            public TableCell<Inventory, ImageView> call(TableColumn<Inventory, ImageView>
+//            inventoryImageViewTableColumn) {
 //                return null;
 //            }
 //        });
 //        imgCol.setOnEditCommit(inventoryStringCellEditEvent -> {
 //            Inventory inventory =
-//                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent.getTablePosition().getRow());
+//                    inventoryStringCellEditEvent.getTableView().getItems().get(inventoryStringCellEditEvent
+//                    .getTablePosition().getRow());
 //            inventory.setImage(new SimpleStringProperty(inventoryStringCellEditEvent.getNewValue()));
 //            String nImg = inventory.getImage();
 //            System.out.println(nImg);
@@ -284,31 +291,41 @@ public class HomeController implements Initializable {
                 e.printStackTrace();
             }
         });
+//date
+        dooCol.setCellFactory(new Callback() {
 
-//        dooCol.setCellFactory(new Callback<TableColumn<Customer, Date>, TableCell<Customer, Date>>() {
-//            @Override
-//            public TableCell<Customer, Date> call(TableColumn<Customer, Date> customerDateTableColumn) {
-//                return null;
-//            }
-//        });
-//        dooCol.setOnEditCommit(ordersDateCellEditEvent -> {
-//            Customer customer =
-//                    ordersDateCellEditEvent.getTableView().getItems().get(ordersDateCellEditEvent.getTablePosition
-//                    ().getRow());
-//            customer.setOrderDate(ordersDateCellEditEvent.getNewValue());
-//            String nDoo = customer.getOrderDate().toString();
-//            System.out.println(nDoo);
-//        });
+            @Override
+            public Object call(Object o) {
+                DatePickerCell datePick = new DatePickerCell(customerRow,"doo");
+                return datePick;
+            }
 
-        //  dodCol.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
-//        dodCol.setOnEditCommit(ordersDateCellEditEvent -> {
-//            Customer customer =
-//                    ordersDateCellEditEvent.getTableView().getItems().get(ordersDateCellEditEvent.getTablePosition
-//                    ().getRow());
-//            customer.setDeliveryDate(Date.valueOf(ordersDateCellEditEvent.getNewValue()));
-//            String nDod = customer.getOrderDate().toString();
-//            System.out.println(nDod);
-//        });
+        });
+        dooCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Customer, Date>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Customer, Date> customerDateCellEditEvent) {
+
+            }
+        });
+
+        dodCol.setCellFactory(new Callback() {
+
+            @Override
+            public Object call(Object o) {
+                DatePickerCell datePick = new DatePickerCell(customerRow,"dod");
+                return datePick;
+            }
+
+        });
+
+        dodCol.setOnEditCommit(ordersDateCellEditEvent -> {
+            Customer customer =
+                    ordersDateCellEditEvent.getTableView().getItems().get(ordersDateCellEditEvent.getTablePosition
+                            ().getRow());
+            customer.setDeliveryDate(new SimpleObjectProperty<Date>(ordersDateCellEditEvent.getNewValue()));
+            String nDod = customer.getOrderDate().toString();
+            System.out.println(nDod);
+        });
 
 //        productCol.setCellFactory(TextFieldTableCell.forTableColumn());
 //        productCol.setOnEditCommit(ordersStringCellEditEvent -> {
@@ -461,7 +478,7 @@ public class HomeController implements Initializable {
     }
 
     public ObservableList<Customer> getCustomer() throws Exception {
-        ObservableList<Customer> customerRow = FXCollections.observableArrayList();
+        customerRow = FXCollections.observableArrayList(); // ObservableList<Customer>
 
 //        Inventory inventory = new Inventory();
 //        inventory.setId(new SimpleIntegerProperty(1));

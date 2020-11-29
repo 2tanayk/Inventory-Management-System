@@ -3,6 +3,7 @@ package sample.DAO;
 import DataClasses.Customer;
 import DataClasses.Inventory;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,8 +122,8 @@ public class JDBCDao {
             customer.setFirstName(new SimpleStringProperty(rs.getString(2)));
             customer.setLastName(new SimpleStringProperty(rs.getString(3)));
             customer.setEmail(new SimpleStringProperty(rs.getString(4)));
-            customer.setOrderDate(rs.getDate(5));
-            customer.setDeliveryDate(rs.getDate(6));
+            customer.setOrderDate(new SimpleObjectProperty<>(rs.getDate(5)));
+            customer.setDeliveryDate(new SimpleObjectProperty<>(rs.getDate(6)));
             customer.setProductName(new SimpleStringProperty(rs.getString(7)));
             customer.setProductPrice(new SimpleIntegerProperty(rs.getInt(8)));
             customer.setProductQuantity(new SimpleIntegerProperty(rs.getInt(9)));
@@ -324,6 +325,12 @@ public class JDBCDao {
             case "prod_name":
                 preparedStatement.setString(1, customer.getProductName());
                 System.out.println("product name updated!");
+                break;
+            case "doo":
+                preparedStatement.setDate(1, customer.getOrderDate());
+                break;
+            case "dod":
+                preparedStatement.setDate(1, customer.getDeliveryDate());
                 break;
             default:
                 System.out.println("Oops some thing went wrong!");

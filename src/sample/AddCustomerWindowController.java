@@ -4,6 +4,7 @@ import DataClasses.Customer;
 import DataClasses.Inventory;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,8 +53,9 @@ public class AddCustomerWindowController {
         String firstName = customerFirstName.getText();
         String lastName = customerLastName.getText();
         String email = customerEmail.getText();
-        LocalDate dateOfOrder = dOO.getValue();
-        LocalDate dateOfDelivery = dOD.getValue();
+        Date dateOfOrder = Date.valueOf(dOO.getValue());
+        Date dateOfDelivery = Date.valueOf(dOD.getValue());
+        //LocalDate dateOfDelivery = dOD.getValue();
         //I will grab hold of this
         String productName = customerOrder.getText();
 
@@ -82,8 +84,8 @@ public class AddCustomerWindowController {
         nCustomer.setFirstName(new SimpleStringProperty(firstName));
         nCustomer.setLastName(new SimpleStringProperty(lastName));
         nCustomer.setEmail(new SimpleStringProperty(email));
-        nCustomer.setOrderDate(Date.valueOf(dateOfOrder));
-        nCustomer.setDeliveryDate(Date.valueOf(dateOfDelivery));
+        nCustomer.setOrderDate(new SimpleObjectProperty<>(dateOfOrder));
+        nCustomer.setDeliveryDate(new SimpleObjectProperty<>(dateOfDelivery));
         nCustomer.setProductName(new SimpleStringProperty(productName));
         nCustomer.setProductPrice(new SimpleIntegerProperty(Integer.parseInt(price)));
         nCustomer.setProductQuantity(new SimpleIntegerProperty(qty));

@@ -1,18 +1,18 @@
 package DataClasses;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Customer {
     private SimpleIntegerProperty srno;
     private SimpleStringProperty firstName;
     private SimpleStringProperty lastName;
     private SimpleStringProperty email;
-    private Date orderDate;
-    private Date deliveryDate;
+    private SimpleObjectProperty<Date> orderDate;
+    private SimpleObjectProperty<Date> deliveryDate;
     private SimpleStringProperty productName;
     private SimpleIntegerProperty productPrice;
     private SimpleIntegerProperty productQuantity;
@@ -51,18 +51,18 @@ public class Customer {
     }
 
     public Date getOrderDate() {
-        return orderDate;
+        return orderDate.get();
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(SimpleObjectProperty<Date> orderDate) {
         this.orderDate = orderDate;
     }
 
     public Date getDeliveryDate() {
-        return deliveryDate;
+        return deliveryDate.get();
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(SimpleObjectProperty<Date> deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
@@ -96,5 +96,21 @@ public class Customer {
 
     public void setTotalPrice(SimpleIntegerProperty totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "srno=" + srno +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", email=" + email +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", productName=" + productName +
+                ", productPrice=" + productPrice +
+                ", productQuantity=" + productQuantity +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }
