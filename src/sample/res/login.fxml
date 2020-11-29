@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <!--<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller"> -->
@@ -13,42 +16,65 @@
         </AnchorPane>
         <GridPane alignment="center" hgap="10" vgap="10">
             <children>
-                <AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #2A0033;">
+                <AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #2D3447;">
                     <children>
-                        <TextField id="loginEmailText" fx:id="loginEmailText" layoutX="122.0" layoutY="202.0" prefHeight="26.0" prefWidth="237.0" promptText="Email" style="-fx-border-color: #96439A; -fx-background-color: #96439A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20;" />
-                        <Label layoutX="43.0" layoutY="206.0" text="E-mail" textFill="#eae3e3">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="43.0" layoutY="270.0" text="Password" textFill="#eae3e3">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <PasswordField id="loginPasswordText" fx:id="loginPasswordText" layoutX="122.0" layoutY="266.0" prefHeight="26.0" prefWidth="237.0" promptText="Password" style="-fx-border-color: #96439A; -fx-background-color: #96439A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20;" />
+
+                        <TextField id="loginEmailText" fx:id="loginEmailText" layoutX="106.0" layoutY="202.0" prefHeight="27.0" prefWidth="254.0" promptText="Email" style="-fx-border-color: #2196f3; -fx-background-color: #a0a2ab; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20; -fx-prompt-text-fill: #2D3447;" />
+                        <PasswordField id="loginPasswordText" fx:id="loginPasswordText" layoutX="106.0" layoutY="266.0" prefHeight="27.0" prefWidth="254.0" promptText="Password" style="-fx-border-color: #2196f3; -fx-background-color: #a0a2ab; -fx-background-insets: 0; -fx-border-radius: 20; -fx-background-radius: 20; -fx-prompt-text-fill: #2D3447;" />
+
                         <Separator layoutX="29.0" layoutY="367.0" prefHeight="8.0" prefWidth="341.0" />
                         <Separator layoutX="25.0" layoutY="122.0" prefHeight="8.0" prefWidth="341.0" />
-                        <Button id="submitBtn" fx:id="loginBtn" defaultButton="true" layoutX="232.0" layoutY="407.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="113.0" style="-fx-background-color: #FCBB31; -fx-background-radius: 20;" text="Login">
+                        <Button id="submitBtn" fx:id="loginBtn" defaultButton="true" layoutX="232.0" layoutY="407.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="113.0" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Login" textFill="#faf8f8">
                             <font>
                                 <Font name="Arial" size="14.0" />
                             </font>
+                     <effect>
+                        <DropShadow blurType="TWO_PASS_BOX" height="25.62" offsetY="3.0" radius="12.905000000000001" width="28.0">
+                           <color>
+                              <Color red="0.08591130375862122" green="0.14311614632606506" blue="0.1605263203382492" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                         </Button>
 
-                        <Label layoutX="158.0" layoutY="59.0" text="LOGIN" textFill="#eae3e3">
+                        <Label layoutX="158.0" layoutY="59.0" text="LOGIN" textFill="#2196f3">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX">
+                           <color>
+                              <Color red="0.12559941411018372" green="0.25736087560653687" blue="0.31842106580734253" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                         </Label>
                         <!-- <Button id="registerBtn" fx:id="loginBtn" defaultButton="true" layoutX="231.0" layoutY="440.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FCBB31; -fx-background-radius: 20;" text="Login Instead">
                             <font>
                                <Font name="Arial" size="14.0" />
                             </font>
                          </Button> -->
-                        <Button layoutX="62.0" layoutY="407.0" mnemonicParsing="false" onAction="#registerPage" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #FCBB31; -fx-background-radius: 20;" text="Register Instead" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Button layoutX="62.0" layoutY="407.0" mnemonicParsing="false" onAction="#registerPage" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Register Instead" textFill="#f8f3f3" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <font>
                                 <Font size="14.0" />
-                            </font></Button>
+                            </font>
+                     <effect>
+                        <DropShadow blurType="TWO_PASS_BOX" height="25.29" offsetY="3.0" radius="12.86" width="28.15">
+                           <color>
+                              <Color red="0.06379629671573639" green="0.12433820962905884" blue="0.13947369158267975" />
+                           </color>
+                        </DropShadow>
+                     </effect></Button>
+                  <ImageView blendMode="SRC_ATOP" fitHeight="27.0" fitWidth="53.0" layoutX="37.0" layoutY="204.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/email%20(2).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView blendMode="SRC_ATOP" fitHeight="35.0" fitWidth="28.0" layoutX="50.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/lock.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
             </children>

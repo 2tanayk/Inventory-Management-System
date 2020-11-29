@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddCustomerWindowController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddCustomerWindowController">
     <children>
-        <VBox layoutX="137.0" layoutY="102.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox layoutX="137.0" layoutY="102.0" prefHeight="530.0" prefWidth="500.0" style="-fx-background-color: #2d3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <children>
-                <Label text="Customer First Name :">
+
+                <Label text="Customer First Name :" textFill="#ede6e6">
+
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -23,12 +32,16 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="customerFirstName">
+
+                <TextField fx:id="customerFirstName" promptText="Enter Name" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
+
                     <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label layoutX="30.0" layoutY="35.0" text="Customer Last Name :">
+
+                <Label layoutX="30.0" layoutY="35.0" text="Customer Last Name :" textFill="#f2ebeb">
+
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -39,12 +52,16 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="customerLastName" layoutX="30.0" layoutY="71.0">
+
+                <TextField fx:id="customerLastName" layoutX="30.0" layoutY="71.0" promptText="Enter Surname" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
+
                     <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label layoutX="30.0" layoutY="107.0" text="Customer Email :">
+
+                <Label layoutX="30.0" layoutY="107.0" text="Customer Email :" textFill="#eae5e5">
+
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -55,25 +72,33 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="customerEmail" layoutX="30.0" layoutY="142.0">
+
+                <TextField fx:id="customerEmail" layoutX="30.0" layoutY="142.0" promptText="Enter Email Id" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
+
                     <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
                 <HBox prefHeight="25.0" prefWidth="360.0">
                     <children>
-                        <DatePicker fx:id="dOO" promptText="Date of Order">
+
+                        <DatePicker fx:id="dOO" prefHeight="26.0" prefWidth="232.0" promptText="Date of Order" style="-fx-background-color: #a0a2ab;">
+
                             <HBox.margin>
                                 <Insets right="5.0" />
                             </HBox.margin>
                         </DatePicker>
-                        <DatePicker fx:id="dOD" promptText="Date of Delivery" />
+
+                        <DatePicker fx:id="dOD" prefHeight="26.0" prefWidth="224.0" promptText="Date of Delivery" style="-fx-background-color: #a0a2ab;" />
+
                     </children>
                     <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                     </VBox.margin>
                 </HBox>
-                <Label layoutX="30.0" layoutY="178.0" text="Product Ordered :">
+
+                <Label layoutX="30.0" layoutY="178.0" text="Product Ordered :" textFill="#f0e9e9">
+
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -84,12 +109,16 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="customerOrder" layoutX="30.0" layoutY="213.0">
+
+                <TextField fx:id="customerOrder" layoutX="30.0" layoutY="213.0" promptText="Enter Name of Product" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
+
                     <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label layoutX="30.0" layoutY="285.0" text="Price:">
+
+                <Label layoutX="30.0" layoutY="285.0" text="Price:" textFill="#eae5e5">
+
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -97,12 +126,16 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="customerPrice" layoutX="30.0" layoutY="321.0">
+
+                <TextField fx:id="customerPrice" layoutX="30.0" layoutY="321.0" promptText="Enter Price of Product" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
+
                     <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label layoutX="30.0" layoutY="351.0" text="Quantity :">
+
+                <Label layoutX="30.0" layoutY="351.0" text="Quantity :" textFill="#e2dddd">
+
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -110,12 +143,16 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="customerQuantity" layoutX="30.0" layoutY="387.0">
+
+                <TextField fx:id="customerQuantity" layoutX="30.0" layoutY="387.0" promptText="Enter Quantity Ordered" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
+
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Button fx:id="addCustomerBtn" mnemonicParsing="false" onAction="#addCustomerOrder" text="Add Order">
+
+                <Button fx:id="addCustomerBtn" alignment="CENTER" mnemonicParsing="false" onAction="#addCustomerOrder" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Add Order">
+
                     <VBox.margin>
                         <Insets top="2.0" />
                     </VBox.margin>

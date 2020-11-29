@@ -1,0 +1,33 @@
+/*TablPane styling*/
+* {
+    -fx-primary : #2A2E37;
+    -fx-secondary : #FFFF8D;
+    -fx-primarytext : #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1:#1976D2;
+}
+
+
+
+.tab{
+    /*-fx-background-color: -fx-primary;*/
+    -fx-background-color: #2d3447;
+    
+}
+
+.tab-header-background{
+    -fx-background-color:  #a0a2ab;
+}
+
+.tab-label{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 10pt; 
+}
+
+
+.tab-main{
+    -fx-pref-height : 60;
+    -fx-max-height : 60;
+}
+

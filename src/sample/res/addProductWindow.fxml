@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductWindowController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductWindowController">
     <children>
-        <VBox layoutX="120.0" layoutY="99.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="593.0" prefWidth="488.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
             <children>
-                <Label text="Product Id :">
+                <Label text="Product ID :" textFill="#f0e9e9">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -20,7 +27,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="addProductId" prefHeight="25.0" prefWidth="258.0">
+                <TextField fx:id="addProductId" prefHeight="25.0" prefWidth="258.0" promptText="Enter ID" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -28,7 +35,7 @@
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label text="Product Name :">
+                <Label text="Product Name :" textFill="#f0e9e9">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -36,12 +43,12 @@
                         <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="addProductName">
+                <TextField fx:id="addProductName" promptText="Enter product name" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
                     <VBox.margin>
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label text="Price :">
+                <Label text="Price :" textFill="#f5efef">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -52,12 +59,12 @@
                         <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="addProductPrice">
+                <TextField fx:id="addProductPrice" promptText="Enter product price" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
                     <VBox.margin>
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label text="Quantity :">
+                <Label text="Quantity :" textFill="#ede8e8">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -65,12 +72,12 @@
                         <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="addProductQuantity">
+                <TextField fx:id="addProductQuantity" promptText="Enter product quantity" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
                     <VBox.margin>
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Label text="Image :">
+                <Label text="Image :" textFill="#f0ecec">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -81,12 +88,17 @@
                         <Insets left="5.0" right="10.0" />
                     </padding>
                 </Label>
-            <Button fx:id="addProductImage" mnemonicParsing="false" onAction="#addProductImageFromDrive" text="Choose Image">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="5.0" />
-               </VBox.margin>
-            </Button>
-                <Label text="Description :">
+
+                <Button fx:id="addProductImage" mnemonicParsing="false" onAction="#addProductImageFromDrive" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Choose Image">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                    </VBox.margin>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" color="#0f2131" offsetY="3.0" radius="11.155000000000001" width="25.62" />
+               </effect>
+                </Button>
+                <Label text="Description :" textFill="#faf5f5">
+
                     <padding>
                         <Insets left="5.0" right="10.0" />
                     </padding>
@@ -94,12 +106,12 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextArea fx:id="addProductDescription" prefHeight="200.0" prefWidth="200.0">
+                <TextArea fx:id="addProductDescription" opacity="0.61" prefHeight="200.0" prefWidth="200.0" promptText="Type a description" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30;">
                     <VBox.margin>
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextArea>
-                <Label text="Category :">
+                <Label text="Category :" textFill="#f0ebeb">
                     <padding>
                         <Insets left="5.0" right="10.0" />
                     </padding>
@@ -107,15 +119,20 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="addProductCategory">
+                <TextField fx:id="addProductCategory" promptText="Enter product category" style="-fx-background-color: #a0a2ab; -fx-background-radius: 30; -fx-prompt-text-fill: #2d3447;">
                     <VBox.margin>
                         <Insets bottom="10.0" top="5.0" />
                     </VBox.margin>
                 </TextField>
-                <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToInventory" text="Add">
+
+                <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToInventory" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #2196f3; -fx-background-radius: 30;" text="Add">
+
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" color="#0e2036" height="23.38" offsetY="3.0" radius="11.7875" width="25.77" />
+               </effect>
                 </Button>
             </children>
             <padding>

@@ -31,7 +31,9 @@ public class JDBCDao {
     private String UPDATE_ORDERS_FIELD_QUERY = "UPDATE inventory SET " + wc2 + " = ? WHERE id= ?";
 
     private final String DELETE_INVENTORY_ROW_QUERY = "DELETE FROM inventory WHERE id = ?";
+
     private final String BUILD_MAP_QUERY = "SELECT id,prod_name FROM jdbcdemo.inventory;";
+
     private final String INSERT_INTO_ORDERS = "INSERT INTO orders (first_name,last_name,email,doo,dod,prod_name," +
             "price," +
             "qty,total) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -386,4 +388,6 @@ public class JDBCDao {
         preparedStatement.close();
         con.close();
     }
+
 }
+

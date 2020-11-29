@@ -371,7 +371,9 @@ public class HomeController implements Initializable {
             System.out.println("Required Id is:" + reqId);
 
             int d = oQuantity - nQuantity;
+
             System.out.println("dIFFERENCE:" + d);
+
 
             for (Inventory i : hObsL) {
                 System.out.println("looping");
@@ -582,6 +584,7 @@ public class HomeController implements Initializable {
         ObservableList<Customer> selectedRow = ordersTableView.getSelectionModel().getSelectedItems();
         ObservableList<Customer> allRows = ordersTableView.getItems();
 
+
         ObservableList<Inventory> mItems = inventoryTableView.getItems();
 
         Customer selectedCustomer = selectedRow.get(0);
@@ -617,3 +620,36 @@ public class HomeController implements Initializable {
 }
 
 
+        ObservableList<Inventory> mItems = inventoryTableView.getItems();
+
+        Customer selectedCustomer = selectedRow.get(0);
+        int srno = selectedCustomer.getSrno();
+        String productName = selectedCustomer.getProductName();
+        int qty = selectedCustomer.getProductQuantity();
+
+        JDBCDao jdbcDao = new JDBCDao();
+        HashMap<String, Integer> helperHashMap = jdbcDao.buildHelperMap();
+
+        int reqId = helperHashMap.get(productName);
+
+
+        for (Inventory i : mItems) {
+            System.out.println("looping");
+            if (i.getId() == reqId) {
+                i.setQuantity(new SimpleIntegerProperty(i.getQuantity() + qty));
+                inventoryTableView.refresh();
+                jdbcDao.updateInventoryField(i, "qty", reqId);
+                break;
+            }
+        }
+
+        allRows.removeAll(selectedRow);
+        jdbcDao.deleteCustomerFromOrders(srno);
+
+
+//    public void editIdCol(TableColumn.CellEditEvent<Inventory, Integer> inventoryIntegerCellEditEvent) {
+//        System.out.println("Im being edited!");
+//
+//    }
+    }
+}
